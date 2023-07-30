@@ -1,0 +1,19 @@
+AttrData = [
+    {'name': 'Liberty',
+'likes': 0,
+'places': 1,
+'image': 'something',
+'description': 'something',
+'dislike': 0,
+'favorite': False,
+'user_id': 1},
+
+{'name': 'Observation deck',
+'likes': 0,
+'places': 1,
+'image': 'something',
+'description': 'something',
+'dislike': 0,
+'favorite': False,
+'user_id': 1}
+]
