@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Place.css'
 import Attractions from './Attraction'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom"
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { useNavigate } from "react-router-dom"
 
 const Place = ({ image, name }) => {
     const [goAttractions, setGoAttractions] = useState(false)

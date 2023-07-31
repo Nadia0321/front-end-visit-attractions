@@ -2,6 +2,9 @@ import { useState } from 'react';
 import './App.css';
 import PlaceList from './components/PlaceList'
 import AttractionList from './components/AttractionList';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// import Routes from './routes/routes';
+
 
 const DATA = [
   {
@@ -84,6 +87,7 @@ function App() {
       if (attr.id === id) {
         return { ...attr, likes: attr.likes + 1 };
       } else {
+
         return attr;
       }
 
@@ -97,12 +101,29 @@ function App() {
       <header className="App-header">
 
       </header>
-      <main>
-        <PlaceList placeData={DATA} />
-        {/* <AttractionList attrData={attrData} onLikeClick={onLikeClick} /> */}
-      </main>
-    </body>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<PlaceList placeData={DATA} />} />
+          <Route path='/attractions' element={<AttractionList attrData={attrData} onLikeClick={onLikeClick} />} />
+        </Routes>
+      </BrowserRouter>
+    </body >
   );
 }
 
 export default App;
+
+{/* <body className="App">
+        <header className="App-header">
+
+        </header>
+
+        <main>
+          <Routes />
+
+          <PlaceList placeData={DATA} />
+          {/* <AttractionList attrData={attrData} onLikeClick={onLikeClick} /> */}
+
+{/* //   </main > */ }
+{/* // </body > * /} */ }
+// this is where I should stop
