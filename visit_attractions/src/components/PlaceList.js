@@ -1,6 +1,6 @@
 import React from "react";
 import Place from "./Place";
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBarPlace";
 
 const PlaceList = ({ placeData, onHandleSubmitPlace, onHandleAttractions }) => {
 

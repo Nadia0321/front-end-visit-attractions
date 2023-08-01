@@ -4,7 +4,7 @@ import PlaceList from './components/PlaceList'
 import AttractionList from './components/AttractionList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from "axios"
-import SearchBar from './components/SearchBar';
+import SearchBar from './components/SearchBarPlace';
 // import Routes from './routes/routes';
 
 
@@ -128,9 +128,15 @@ function App() {
     fetchPlaces();
   }, []);
 
-  const onHandleSubmitPlace = () => {
-    return axios
-      .get(`${kBaseURL}/`)
+  const onHandleSubmitPlace = (searchedPlace) => {
+    // const lowerCasePlace = searchedPlace.toLowerCase()
+
+    setPlaceData(placeData.filter((place) => {
+      return place.name.toLowerCase().includes(searchedPlace.toLowerCase())
+    }))
+    // console.log(test)
+    // return test
+
   }
 
   const onHandleSubmitAttr = () => {

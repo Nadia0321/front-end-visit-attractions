@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import Attraction from "./Attraction";
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBarPlace";
 
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import './Attraction.css'
 import { } from 'react-icons/fa'
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBarPlace";
 
 const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeClick, favorite, onFavoriteClick, onHandleSubmitAttr }) => {
     let favirireIcon = favorite ? '💙' : '🤍'
