@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import Attraction from "./Attraction";
-import SearchBar from "./SearchBarPlace";
 import SearchBarAttr from "./SearchBarAttr";
 import { Link } from 'react-router-dom';
+import Filter from "./Filter";
 
-
-const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions }) => {
+const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData }) => {
 
     const params = useParams()
 
@@ -24,9 +23,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
                     onDislikeClick={onDislikeClick}
                     favorite={attr.favorite}
                     onFavoriteClick={onFavoriteClick}
-                // onHandleSubmitAttr={onHandleSubmitAttr}
                 />
-
             )
         })
     }
@@ -41,22 +38,18 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
 
     return (
         <div>
-            <Link to={`/`}
-
-            >
+            <Link to={`/`}>
                 Home
-
             </Link>
-            <header>
+            <section className='search-bar' >
                 <SearchBarAttr onHandleSubmitAttr={onHandleSubmitAttr} />
-            </header>
+                <Filter sortData={sortData} />
+            </section>
             <section>
                 {getAttrListJSX(attrData)}
             </section>
         </div>
-
     )
-
 }
 
 export default AttractionList

@@ -1,7 +1,8 @@
 import React from "react";
 import Place from "./Place";
-import SearchBar from "./SearchBarPlace";
 import SearchBarPlace from "./SearchBarPlace";
+import Filter from "./Filter";
+import './PlaceList.css'
 
 const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
 
@@ -26,10 +27,11 @@ const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
     }
 
     return (
-        <div>
-            <header>
+        <div className="body">
+            <section className="tab-container">
                 <SearchBarPlace onHandleSubmitPlace={onHandleSubmitPlace} />
-            </header>
+
+            </section>
             <div className="Placelist-container">
                 {getPlaceListJSX()}
             </div>

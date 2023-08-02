@@ -1,10 +1,9 @@
 import React from "react";
 import './Attraction.css'
 import { } from 'react-icons/fa'
-import SearchBar from "./SearchBarPlace";
 
 const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeClick, favorite, onFavoriteClick, onHandleSubmitAttr }) => {
-    let favirireIcon = favorite ? '💙' : '🤍'
+    let favorireIcon = favorite ? '💙' : '🤍'
 
     return (
         <div>
@@ -15,7 +14,7 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
                     <div className="comment">comment</div>
                     <button className="like" onClick={() => onLikeClick(id)}>like: {likes} </button>
                     <button className="dislike" onClick={() => onDislikeClick(id)}>dislike: {dislike} </button>
-                    <button onClick={() => onFavoriteClick(id)}>{favirireIcon}</button>
+                    <button onClick={() => onFavoriteClick(id)}>{favorireIcon}</button>
                 </div>
                 <h4>
                     {name}

@@ -4,8 +4,7 @@ import PlaceList from './components/PlaceList'
 import AttractionList from './components/AttractionList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from "axios"
-import SearchBarPlace from './components/SearchBarPlace';
-// import Routes from './routes/routes';
+
 
 
 const DATA = [
@@ -108,14 +107,14 @@ function App() {
   const [placeData, setPlaceData] = useState([])
   const [attrData, setAttrData] = useState([])
   const [unmodifiedAttrData, setunmodifiedAttrData] = useState([])
-  const [unmodifiedPlaceData, setunmodifiedPlaceData] = useState([])
+  const [unmodifiedPlaceData, setUnmodifiedPlaceData] = useState([])
 
 
   const fetchPlaces = () => {
     getAllPlaces()
       .then((places) => {
         setPlaceData(places.places)
-        setunmodifiedPlaceData(places.places)
+        setUnmodifiedPlaceData(places.places)
       });
   };
 
@@ -183,6 +182,20 @@ function App() {
     }))
   }
 
+  const sortData = (selectedValue) => {
+    console.log(selectedValue)
+    let sortedData
+    if (selectedValue === 'Popular') {
+      sortedData = [...attrData].sort((a, b) => b.likes - a.likes)
+      console.log(attrData)
+    } else {
+      sortedData = [...attrData].sort((a, b) => a.name.localeCompare(b.name))
+      console.log(attrData)
+    }
+    setAttrData(sortedData)
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -192,7 +205,7 @@ function App() {
           <Route path='/' element={<PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} />} />
           <Route path='/attractions/:id' element={<AttractionList
             attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
-            onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} />} />
+            onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} />} />
         </Routes>
       </BrowserRouter>
     </div >

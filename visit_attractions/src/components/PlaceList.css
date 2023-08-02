@@ -1,0 +1,19 @@
+.body {}
+
+.tab-container {
+
+    background-color: antiquewhite;
+
+}
+
+.search-bar {
+    display: inline-block;
+    margin-left: 50px;
+    /* background-color: rgb(195, 232, 232); */
+
+}
+
+.filter {
+    display: inline-block;
+    margin-left: 50px;
+}

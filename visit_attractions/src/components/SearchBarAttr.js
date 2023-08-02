@@ -21,7 +21,6 @@ const SearchBarAttr = ({ onHandleSubmitAttr }) => {
         <form className="search" onSubmit={handleSubmit}>
             <label htmlFor="name">Search:  </label>
             <input type='text' id='name' name='name' onChange={handleNameSearch} value={searchAttrState} autoComplete='name'></input>
-            <input type='submit' value='Search'></input>
         </form>
     )
 }
