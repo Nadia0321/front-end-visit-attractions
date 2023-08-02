@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import Attraction from "./Attraction";
 import SearchBar from "./SearchBarPlace";
-
+import SearchBarAttr from "./SearchBarAttr";
+import { Link } from 'react-router-dom';
 
 
 const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions }) => {
@@ -23,7 +24,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
                     onDislikeClick={onDislikeClick}
                     favorite={attr.favorite}
                     onFavoriteClick={onFavoriteClick}
-                    onHandleSubmitAttr={onHandleSubmitAttr}
+                // onHandleSubmitAttr={onHandleSubmitAttr}
                 />
 
             )
@@ -40,8 +41,14 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
 
     return (
         <div>
+            <Link to={`/`}
+
+            >
+                Home
+
+            </Link>
             <header>
-                <SearchBar onHandleSubmitAttr={() => onHandleSubmitAttr()} />
+                <SearchBarAttr onHandleSubmitAttr={onHandleSubmitAttr} />
             </header>
             <section>
                 {getAttrListJSX(attrData)}

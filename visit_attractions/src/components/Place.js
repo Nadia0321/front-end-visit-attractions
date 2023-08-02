@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Place.css'
-import Attractions from './Attraction'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import SearchBar from './SearchBarPlace';
+// import Attractions from './Attraction'
+import { Link } from 'react-router-dom';
+// import SearchBar from './SearchBarPlace';
 // import { useNavigate } from "react-router-dom"
 
 const Place = ({ placeID, image, name, onHandleAttractions }) => {

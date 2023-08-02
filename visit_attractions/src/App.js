@@ -4,7 +4,7 @@ import PlaceList from './components/PlaceList'
 import AttractionList from './components/AttractionList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from "axios"
-import SearchBar from './components/SearchBarPlace';
+import SearchBarPlace from './components/SearchBarPlace';
 // import Routes from './routes/routes';
 
 
@@ -107,11 +107,15 @@ const convertAttrFromAPI = (apiPlaces) => {
 function App() {
   const [placeData, setPlaceData] = useState([])
   const [attrData, setAttrData] = useState([])
+  const [unmodifiedAttrData, setunmodifiedAttrData] = useState([])
+  const [unmodifiedPlaceData, setunmodifiedPlaceData] = useState([])
+
 
   const fetchPlaces = () => {
     getAllPlaces()
       .then((places) => {
         setPlaceData(places.places)
+        setunmodifiedPlaceData(places.places)
       });
   };
 
@@ -120,6 +124,7 @@ function App() {
       .then((attractions) => {
 
         setAttrData(attractions)
+        setunmodifiedAttrData(attractions)
       });
   };
 
@@ -129,19 +134,21 @@ function App() {
   }, []);
 
   const onHandleSubmitPlace = (searchedPlace) => {
-    // const lowerCasePlace = searchedPlace.toLowerCase()
 
-    setPlaceData(placeData.filter((place) => {
-      return place.name.toLowerCase().includes(searchedPlace.toLowerCase())
+    setPlaceData(unmodifiedPlaceData.filter((place) => {
+      const lowerName = place.name.toLowerCase()
+      const lowerSearch = searchedPlace.toLowerCase()
+      return lowerName.includes(lowerSearch)
     }))
-    // console.log(test)
-    // return test
-
   }
 
-  const onHandleSubmitAttr = () => {
-    return axios
-      .get(`${kBaseURL}/`)
+  const onHandleSubmitAttr = (searchedAttr) => {
+
+    setAttrData(unmodifiedAttrData.filter((attr) => {
+      const lowerName = attr.name.toLowerCase()
+      const lowerSearch = searchedAttr.toLowerCase()
+      return lowerName.includes(lowerSearch)
+    }))
   }
 
   const onLikeClick = (id) => {

@@ -1,8 +1,9 @@
 import React from "react";
 import Place from "./Place";
 import SearchBar from "./SearchBarPlace";
+import SearchBarPlace from "./SearchBarPlace";
 
-const PlaceList = ({ placeData, onHandleSubmitPlace, onHandleAttractions }) => {
+const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
 
     const getPlaceListJSX = () => {
         return placeData.map((place) => {
@@ -17,7 +18,7 @@ const PlaceList = ({ placeData, onHandleSubmitPlace, onHandleAttractions }) => {
                     state={place.state}
                     // userID={place.userID}
                     onHandleSubmitPlace={onHandleSubmitPlace}
-                    onHandleAttractions={onHandleAttractions}
+
                 />
             )
 
@@ -27,7 +28,7 @@ const PlaceList = ({ placeData, onHandleSubmitPlace, onHandleAttractions }) => {
     return (
         <div>
             <header>
-                <SearchBar onHandleSubmitPlace={onHandleSubmitPlace} />
+                <SearchBarPlace onHandleSubmitPlace={onHandleSubmitPlace} />
             </header>
             <div className="Placelist-container">
                 {getPlaceListJSX()}
