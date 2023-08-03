@@ -4,6 +4,7 @@ import Attraction from "./Attraction";
 import SearchBarAttr from "./SearchBarAttr";
 import { Link } from 'react-router-dom';
 import Filter from "./Filter";
+// import './AttractionList.css'
 
 const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData }) => {
 

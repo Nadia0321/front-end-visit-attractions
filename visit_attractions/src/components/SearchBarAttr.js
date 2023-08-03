@@ -12,13 +12,14 @@ const SearchBarAttr = ({ onHandleSubmitAttr }) => {
     }
 
     const handleSubmit = (event) => {
-        // to prevent the page is rendered, because if rendered it will show the first page when we open the web app
+
         event.preventDefault()
         setSearchAttrState("")
     }
 
+    // onSubmit={handleSubmit}
     return (
-        <form className="search" onSubmit={handleSubmit}>
+        <form className="search" >
             <label htmlFor="name">Search:  </label>
             <input type='text' id='name' name='name' onChange={handleNameSearch} value={searchAttrState} autoComplete='name'></input>
         </form>

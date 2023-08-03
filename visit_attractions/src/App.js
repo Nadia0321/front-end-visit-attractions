@@ -4,6 +4,9 @@ import PlaceList from './components/PlaceList'
 import AttractionList from './components/AttractionList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from "axios"
+import Login from './components/Authentication/Login';
+import SignUp from './components/Authentication/SignUp';
+// import { Link } from 'react-router-dom';
 
 
 
@@ -34,7 +37,7 @@ const attrDATA = [
     'id': 1,
     'name': 'Liberty',
     'likes': 0,
-    'places': 1,
+    'placeID': 1,
     'image': 'something',
     'description': 'something',
     'dislike': 0,
@@ -46,7 +49,7 @@ const attrDATA = [
     'id': 2,
     'name': 'Observation deck',
     'likes': 0,
-    'places': 1,
+    'placeID': 1,
     'image': 'something',
     'description': 'something',
     'dislike': 0,
@@ -57,7 +60,7 @@ const attrDATA = [
     'id': 3,
     'name': 'Central Park',
     'likes': 0,
-    'places': 1,
+    'placeID': 1,
     'image': 'something',
     'description': 'something',
     'dislike': 0,
@@ -69,7 +72,7 @@ const attrDATA = [
     'id': 4,
     'name': 'World center',
     'likes': 0,
-    'places': 1,
+    'placeID': 1,
     'image': 'something',
     'description': 'something',
     'dislike': 0,
@@ -102,8 +105,12 @@ const convertAttrFromAPI = (apiPlaces) => {
   return newPlaces
 }
 
-
+// ==============================================================================================
 function App() {
+  const [loginUser, setLoginUser] = useState({})
+  const [isLogin, setIsLogin] = useState(false)
+  // const [userData, setUserData] = useState(defaultUser)
+
   const [placeData, setPlaceData] = useState([])
   const [attrData, setAttrData] = useState([])
   const [unmodifiedAttrData, setunmodifiedAttrData] = useState([])
@@ -196,12 +203,22 @@ function App() {
   }
 
 
+
+
+
+
+
+
+
   return (
     <div className="App">
       <header className="App-header">
+
       </header>
       <BrowserRouter>
         <Routes>
+          <Route path='/login' element={<Login loginUser={loginUser} />} />
+          <Route path='/SignUp' element={<SignUp />} />
           <Route path='/' element={<PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} />} />
           <Route path='/attractions/:id' element={<AttractionList
             attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}

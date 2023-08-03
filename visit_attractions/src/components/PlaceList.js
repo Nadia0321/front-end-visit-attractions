@@ -3,6 +3,7 @@ import Place from "./Place";
 import SearchBarPlace from "./SearchBarPlace";
 import Filter from "./Filter";
 import './PlaceList.css'
+import { Link } from 'react-router-dom';
 
 const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
 
@@ -28,6 +29,12 @@ const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
 
     return (
         <div className="body">
+            <Link to={`/login`}>
+                Login
+            </Link>
+            <Link to={`/signUp`}>
+                Sign up
+            </Link>
             <section className="tab-container">
                 <SearchBarPlace onHandleSubmitPlace={onHandleSubmitPlace} />
 
