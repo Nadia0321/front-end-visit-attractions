@@ -111,7 +111,7 @@ function App() {
   // const [isLogin, setIsLogin] = useState(false)
   // const [userData, setUserData] = useState({ name: '', username: '', email: '' })
 
-  const [boardIdState, setBoardIdState] = useState("")
+  const [placeIdState, setPlaceIdState] = useState("")
   const [placeData, setPlaceData] = useState([])
   const [attrData, setAttrData] = useState([])
   const [unmodifiedAttrData, setunmodifiedAttrData] = useState([])
@@ -135,7 +135,7 @@ function App() {
 
         setAttrData(attractions)
         setunmodifiedAttrData(attractions)
-        setBoardIdState(placeID)
+        setPlaceIdState(placeID)
       });
   };
 
@@ -172,7 +172,7 @@ function App() {
     }));
 
     axios
-      .patch(`${kBaseURL}/places/${boardIdState}/attractions/${id}/like/`)
+      .patch(`${kBaseURL}/places/${placeIdState}/attractions/${id}/like/`)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
   }
@@ -185,6 +185,11 @@ function App() {
         return attr;
       };
     }));
+
+    axios
+      .patch(`${kBaseURL}/places/${placeIdState}/attractions/${id}/dislike/`)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
   }
 
   const onFavoriteClick = (id) => {
@@ -194,9 +199,14 @@ function App() {
       } else {
 
         return attr
-      }
+      };
 
-    }))
+    }));
+
+    axios
+      .patch(`${kBaseURL}/places/${placeIdState}/attractions/${id}/favorite/`)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
   }
 
   const sortData = (selectedValue) => {
