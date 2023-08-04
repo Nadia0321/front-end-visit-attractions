@@ -1,4 +1,4 @@
-/* .body {}
+.body {}
 
 .tab-container {
 
@@ -9,13 +9,13 @@
 .search-bar {
     display: inline-block;
     margin-left: 50px;
-    /* background-color: rgb(195, 232, 232); */
+    background-color: rgb(195, 232, 232);
 
-/* } */
+}
 
 /* PlaceList.css */
 /* PlaceList.css */
-.body {
+/* .body {
     background-color: #f7f9fc;
     font-family: Arial, sans-serif;
     display: flex;
@@ -53,7 +53,7 @@
     width: 100%;
 }
 
-/* Place component styles */
+/* 
 .place-card {
     border: 1px solid #e1e1e1;
     border-radius: 8px;
@@ -84,7 +84,7 @@
 }
 
 /* SearchBarPlace component styles */
-.search-bar {
+/* .search-bar {
     display: flex;
     align-items: center;
     border: 1px solid #e1e1e1;
@@ -117,6 +117,7 @@
 }
 
 /* Filter component styles */
+/*
 .filter-container {
     display: flex;
     align-items: center;
@@ -138,8 +139,11 @@
 }
 
 /* Responsive styles */
+/*
 @media (max-width: 768px) {
     .Placelist-container {
         grid-template-columns: 1fr;
     }
 }
+
+*/

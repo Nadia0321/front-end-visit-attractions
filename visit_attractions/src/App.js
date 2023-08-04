@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import PlaceList from './components/PlaceList'
 import AttractionList from './components/AttractionList';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from "axios"
 import Login from './components/Authentication/Login';
 import SignUp from './components/Authentication/SignUp';
 // import { Link } from 'react-router-dom';
-
-
+// import LoginButton from './components/Authentication/LoginButton';
+// import LogoutButton from './components/Authentication/LogoutButton';
 
 const DATA = [
   {
@@ -107,14 +107,18 @@ const convertAttrFromAPI = (apiPlaces) => {
 
 // ==============================================================================================
 function App() {
-  const [loginUser, setLoginUser] = useState({})
-  const [isLogin, setIsLogin] = useState(false)
-  // const [userData, setUserData] = useState(defaultUser)
+  // const [loginUser, setLoginUser] = useState({})
+  // const [isLogin, setIsLogin] = useState(false)
+  // const [userData, setUserData] = useState({ name: '', username: '', email: '' })
 
+  const [boardIdState, setBoardIdState] = useState("")
   const [placeData, setPlaceData] = useState([])
   const [attrData, setAttrData] = useState([])
   const [unmodifiedAttrData, setunmodifiedAttrData] = useState([])
   const [unmodifiedPlaceData, setUnmodifiedPlaceData] = useState([])
+  // const navigate = useNavigate()
+
+
 
 
   const fetchPlaces = () => {
@@ -131,6 +135,7 @@ function App() {
 
         setAttrData(attractions)
         setunmodifiedAttrData(attractions)
+        setBoardIdState(placeID)
       });
   };
 
@@ -165,6 +170,11 @@ function App() {
         return attr;
       };
     }));
+
+    axios
+      .patch(`${kBaseURL}/places/${boardIdState}/attractions/${id}/like/`)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
   }
 
   const onDislikeClick = (id) => {
@@ -202,11 +212,41 @@ function App() {
     setAttrData(sortedData)
   }
 
+  // ===============================================================
+  // const onHandleValue = (event) => {
+  //   const fieldName = event.target.name;
+  //   const fieldValue = event.target.value;
 
+  //   console.log(event.target.value)
+  //   const newFormData = { ...userData, [fieldName]: fieldValue }
 
+  //   setUserData(newFormData)
+  // }
 
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const newUser = {
+  //     name: userData.name,
+  //     username: userData.username,
+  //     email: userData.email,
+  //   }
+  //   console.log('new user:', newUser)
+  //   onSubmitUser(newUser)
+  //   setUserData({ name: '', username: '', email: '' })
+  // }
 
+  // const onSubmitUser = (data) => {
+  //   return axios
+  //     .post(`${kBaseURL}/users/`, data)
+  //     .then((response) => {
+  //       console.log(response.data)
+  //       setUserData((prevData) => [...prevData, response.data])
 
+  //       // navigate('/');
+  //     })
+
+  //     .catch((e) => console.log(e))
+  // }
 
 
 
@@ -217,8 +257,9 @@ function App() {
       </header>
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<Login loginUser={loginUser} />} />
-          <Route path='/SignUp' element={<SignUp />} />
+          {/* <Route path='/login' element={<Login loginUser={loginUser} />} />
+          <Route path='/SignUp' element={<SignUp onHandleValue={onHandleValue} handleSubmit={handleSubmit} userData={userData} />} /> */}
+
           <Route path='/' element={<PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} />} />
           <Route path='/attractions/:id' element={<AttractionList
             attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
@@ -233,17 +274,3 @@ function App() {
 
 export default App;
 
-{/* <body className="App">
-        <header className="App-header">
-
-        </header>
-
-        <main>
-          <Routes />
-
-          <PlaceList placeData={DATA} />
-          {/* <AttractionList attrData={attrData} onLikeClick={onLikeClick} /> */}
-
-{/* //   </main > */ }
-{/* // </body > * /} */ }
-// this is where I should stop

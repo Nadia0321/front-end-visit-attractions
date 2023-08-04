@@ -1,9 +1,12 @@
 import React from "react";
 import Place from "./Place";
 import SearchBarPlace from "./SearchBarPlace";
-import Filter from "./Filter";
+// import Filter from "./Filter";
 import './PlaceList.css'
 import { Link } from 'react-router-dom';
+import LoginButton from "./Authentication/LoginButton";
+import LogoutButton from "./Authentication/LogoutButton";
+import Profile from "./Authentication/Profile";
 
 const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
 
@@ -29,12 +32,18 @@ const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
 
     return (
         <div className="body">
+
+            {/*             
             <Link to={`/login`}>
                 Login
             </Link>
             <Link to={`/signUp`}>
                 Sign up
-            </Link>
+            </Link> */}
+
+            <Profile />
+            <LoginButton />
+            <LogoutButton />
             <section className="tab-container">
                 <SearchBarPlace onHandleSubmitPlace={onHandleSubmitPlace} />
 
