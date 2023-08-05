@@ -6,11 +6,14 @@ import { Link } from 'react-router-dom';
 import Filter from "./Filter";
 // import './AttractionList.css'
 
-const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData }) => {
+const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData, getAllComments }) => {
 
     const params = useParams()
 
+
     const getAttrListJSX = (attrData) => {
+
+
         return attrData.map((attr) => {
             return (
                 <Attraction
@@ -24,6 +27,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
                     onDislikeClick={onDislikeClick}
                     favorite={attr.favorite}
                     onFavoriteClick={onFavoriteClick}
+                    getAllComments={getAllComments}
                 />
             )
         })
@@ -35,7 +39,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
 
     }, [])
 
-    console.log("atr list", attrData)
+    // console.log("atr list", attrData)
 
     return (
         <div>

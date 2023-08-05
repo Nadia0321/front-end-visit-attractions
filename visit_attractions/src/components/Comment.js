@@ -3,18 +3,28 @@ import { useState } from 'react'
 
 const Comment = ({ attrData }) => {
     const [commentText, setCommentText] = useState('')
+    const [username, setUsername] = useState("")
+
+    const handleUserName = (event) => {
+        const username = event.target.value;
+        setUsername(username)
+
+    }
+
 
     const handleCommentTextChange = (event) => {
         const newComment = event.target.value;
         setCommentText(newComment)
     }
 
+    const handleSubmit = () => {
 
+    }
 
 
     return (
         <div>
-            <form >
+            <form onSubmit={handleSubmit}>
 
                 <h4>Comment</h4>
                 {/* <input
@@ -23,6 +33,7 @@ const Comment = ({ attrData }) => {
                     onChange={handleUsernameChange}
                     placeholder='Your Name'
                     required /> */}
+                <input type='text' id='name' name='name' onChange={handleUserName} value={username} autoComplete='name'>Name: </input>
 
                 <textarea
                     className="comment-text-area"

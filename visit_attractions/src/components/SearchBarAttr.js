@@ -6,7 +6,7 @@ const SearchBarAttr = ({ onHandleSubmitAttr }) => {
     const [searchAttrState, setSearchAttrState] = useState("")
 
     const handleNameSearch = (event) => {
-        const newSearch = event.target.value
+        const newSearch = event.target.value;
         onHandleSubmitAttr(newSearch)
         setSearchAttrState(newSearch)
     }

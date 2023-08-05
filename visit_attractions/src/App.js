@@ -222,6 +222,25 @@ function App() {
     setAttrData(sortedData)
   }
 
+
+
+  const getAllComments = (id) => {
+    return axios
+      .get(`${kBaseURL}/places/${placeIdState}/attractions/${id}/comment/`)
+      .then((res) => {
+        let cL = []
+        // return res.data.comments.map((comment) => comment.description)
+        const test = res.data.comments.map((comment) => cL.push({ [comment.username]: comment.description }))
+        console.log("in app", cL)
+        return cL
+
+      })
+      .catch(err => console.log(err))
+  }
+
+
+
+
   // ===============================================================
   // const onHandleValue = (event) => {
   //   const fieldName = event.target.name;
@@ -273,7 +292,7 @@ function App() {
           <Route path='/' element={<PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} />} />
           <Route path='/attractions/:id' element={<AttractionList
             attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
-            onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} />} />
+            onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} />} />
         </Routes>
       </BrowserRouter>
     </div >
