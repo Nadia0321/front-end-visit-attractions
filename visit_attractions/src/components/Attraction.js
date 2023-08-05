@@ -5,39 +5,33 @@ import Comment from "./Comment";
 import { useState } from "react";
 import SingleComment from "./singleComment";
 
-const Attraction = ({ attrData, id, image, name, likes, dislike, onLikeClick, onDislikeClick, favorite, onFavoriteClick, onHandleSubmitAttr, getAllComments }) => {
+
+
+const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeClick, favorite, onFavoriteClick, onHandleSubmitComment, commentData, fetchComments }) => {
 
     const [showModal, setShowModal] = useState(false);
-    const [commentState, setCommentState] = useState([])
 
     let favorireIcon = favorite ? '💙' : '🤍'
 
+
     const onCommentClick = () => {
         setShowModal(true)
-        // getAllComments(id).then((res) => setCommentState(res))
-        // )
-        // getAllComments(id)
-        getAllComments(id).then(res => {
-            setCommentState(res); // Update comment state with fetched comments
-        });
-
+        fetchComments(id)
     }
 
-    const displayComments = () => {
-        getAllComments(id).then(res => {
-            return (res.map((cmt) => {
-                console.log(cmt)
-                return (
-                    <SingleComment
-                        // username={ }
-                        comment={cmt}
-                    />
-                )
 
-                // return setCommentState(cmt)
-            }))
+    const getComentJSX = () => {
+        console.log("in Attraction", commentData)
+        return commentData.map((cmt) => {
+            return (
+                <SingleComment
+                    name={cmt.name}
+                    comment={cmt.comment}
+                />
+            )
         })
     }
+
 
     const closeModal = () => {
         setShowModal(false);
@@ -66,17 +60,8 @@ const Attraction = ({ attrData, id, image, name, likes, dislike, onLikeClick, on
             {showModal ? (
                 <div>
                     <div onClick={closeModal}>✖</div>
-                    <Comment attrData={attrData} commentState={commentState} />
-                    {/* {displayComments()} */}
-                    <br></br>
-                    {/* Render the comments */}
-                    {commentState.map((cmt, index) => (
-                        <div key={index}>
-                            {Object.entries(cmt).map(([name, comment]) => (
-                                <SingleComment key={name} name={name} comment={comment} />
-                            ))}
-                        </div>
-                    ))}
+                    <Comment onHandleSubmitComment={onHandleSubmitComment} />
+                    <div>{getComentJSX()}</div>
 
                 </div>
             ) : (

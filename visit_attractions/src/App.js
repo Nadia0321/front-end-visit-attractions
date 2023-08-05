@@ -110,7 +110,7 @@ function App() {
   // const [loginUser, setLoginUser] = useState({})
   // const [isLogin, setIsLogin] = useState(false)
   // const [userData, setUserData] = useState({ name: '', username: '', email: '' })
-
+  const [commentData, setCommentData] = useState([])
   const [placeIdState, setPlaceIdState] = useState("")
   const [placeData, setPlaceData] = useState([])
   const [attrData, setAttrData] = useState([])
@@ -223,22 +223,40 @@ function App() {
   }
 
 
-
-  const getAllComments = (id) => {
+  const getAllComments = (placeIdState, id) => {
+    console.log(id)
     return axios
       .get(`${kBaseURL}/places/${placeIdState}/attractions/${id}/comment/`)
       .then((res) => {
-        let cL = []
-        // return res.data.comments.map((comment) => comment.description)
-        const test = res.data.comments.map((comment) => cL.push({ [comment.username]: comment.description }))
-        console.log("in app", cL)
-        return cL
-
+        // console.log("in app1", res.data)
+        return res.data
       })
       .catch(err => console.log(err))
   }
+  const fetchComments = (id) => {
+    getAllComments(placeIdState, id)
+      .then((res) => {
+        setCommentData(res.comments.map((comment) => {
+          return {
+            name: comment.username,
+            comment: comment.description
+          }
+        }))
+        console.log("in app2", res.comments)
+      })
+  }
 
 
+
+  const onHandleSubmitComment = (id, data) => {
+    axios
+      .post(`${kBaseURL}/place/${placeIdState}/attraction/${id}/comment/`, data)
+      .then(res => {
+        setCommentData((pre) => [res.data, ...pre])
+      })
+      .catch((e) => console.log(e))
+
+  }
 
 
   // ===============================================================
@@ -289,10 +307,13 @@ function App() {
           {/* <Route path='/login' element={<Login loginUser={loginUser} />} />
           <Route path='/SignUp' element={<SignUp onHandleValue={onHandleValue} handleSubmit={handleSubmit} userData={userData} />} /> */}
 
-          <Route path='/' element={<PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} />} />
-          <Route path='/attractions/:id' element={<AttractionList
-            attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
-            onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} />} />
+          <Route path='/' element={
+            <PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} />} />
+
+          <Route path='/attractions/:id' element={
+            <AttractionList
+              attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
+              onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} />} />
         </Routes>
       </BrowserRouter>
     </div >

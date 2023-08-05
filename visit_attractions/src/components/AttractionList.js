@@ -4,9 +4,9 @@ import Attraction from "./Attraction";
 import SearchBarAttr from "./SearchBarAttr";
 import { Link } from 'react-router-dom';
 import Filter from "./Filter";
-// import './AttractionList.css'
 
-const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData, getAllComments }) => {
+
+const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData, getAllComments, onHandleSubmitComment, fetchComments, commentData }) => {
 
     const params = useParams()
 
@@ -28,10 +28,14 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
                     favorite={attr.favorite}
                     onFavoriteClick={onFavoriteClick}
                     getAllComments={getAllComments}
+                    onHandleSubmitComment={onHandleSubmitComment}
+                    commentData={commentData}
+                    fetchComments={fetchComments}
                 />
             )
         })
     }
+
 
     useEffect(() => {
         const id = params.id
@@ -39,7 +43,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
 
     }, [])
 
-    // console.log("atr list", attrData)
+
 
     return (
         <div>

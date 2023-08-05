@@ -27,3 +27,31 @@ const SearchBarAttr = ({ onHandleSubmitAttr }) => {
 }
 
 export default SearchBarAttr
+
+
+
+
+
+
+
+// const getAllPlaces = () => {
+//     return axios
+//         .get(`${kBaseURL}/places`)
+//         .then(response => { return response.data })
+//         .catch(error => { console.log(error) })
+// }
+
+// const fetchPlaces = () => {
+//     getAllPlaces()
+//         .then((places) => {
+//             setPlaceData(places.places)
+//             setUnmodifiedPlaceData(places.places)
+//         });
+// };
+
+
+// const convertAttrFromAPI = (apiPlaces) => {
+//     const { id, name, likes, dislike, description, favorite, place_id } = apiPlaces;
+//     const newPlaces = { id, name, likes, dislike, description, favorite, placeID: place_id };
+//     return newPlaces
+// }

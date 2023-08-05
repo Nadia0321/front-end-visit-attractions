@@ -1,4 +1,8 @@
-const SingleComment = ({ comment, name }) => {
+
+
+
+const SingleComment = ({ name, comment }) => {
+
     return (
         <div>
             <h6>{name}</h6>
