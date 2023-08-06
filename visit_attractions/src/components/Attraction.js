@@ -42,10 +42,13 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
 
             <div className="attr-container">
                 <div className="image-container">
-                    {image}
 
+                    <div>
+                        <img src={image} alt="" width="200px" ></img>
+                    </div>
 
                     <div className="attr-icons"></div>
+
                     <button className="like" onClick={() => onLikeClick(id)}>like: {likes} </button>
                     <button className="dislike" onClick={() => onDislikeClick(id)}>dislike: {dislike} </button>
                     <button className="favorite" onClick={() => onFavoriteClick(id)}>{favorireIcon}</button>
@@ -60,7 +63,7 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
             {showModal ? (
                 <div>
                     <div onClick={closeModal}>✖</div>
-                    <Comment onHandleSubmitComment={onHandleSubmitComment} />
+                    <Comment onHandleSubmitComment={onHandleSubmitComment} id={id} commentData={commentData} />
                     <div>{getComentJSX()}</div>
 
                 </div>

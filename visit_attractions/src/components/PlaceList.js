@@ -7,8 +7,13 @@ import { Link } from 'react-router-dom';
 import LoginButton from "./Authentication/LoginButton";
 import LogoutButton from "./Authentication/LogoutButton";
 import Profile from "./Authentication/Profile";
+import AddPlace from "./AddPlace";
 
-const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
+
+
+
+
+const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces }) => {
 
     const getPlaceListJSX = () => {
         return placeData.map((place) => {
@@ -17,12 +22,13 @@ const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
                     key={place.id}
                     placeID={place.id}
                     name={place.name}
-                    // image={place.image}
+                    image={place.image}
                     description={place.description}
                     country={place.country}
                     state={place.state}
                     // userID={place.userID}
                     onHandleSubmitPlace={onHandleSubmitPlace}
+                // onPostPlaces={onPostPlaces}
 
                 />
             )
@@ -41,7 +47,7 @@ const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
                 Sign up
             </Link> */}
 
-            <Profile />
+            <Profile onPostPlaces={onPostPlaces} />
             <LoginButton />
             <LogoutButton />
             <section className="tab-container">
@@ -51,6 +57,11 @@ const PlaceList = ({ placeData, onHandleSubmitPlace }) => {
             <div className="Placelist-container">
                 {getPlaceListJSX()}
             </div>
+            <br /><br />
+            <div>
+                <AddPlace onPostPlaces={onPostPlaces} />
+            </div>
+
         </div>
     )
 

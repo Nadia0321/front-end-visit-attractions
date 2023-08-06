@@ -4,9 +4,10 @@ import Attraction from "./Attraction";
 import SearchBarAttr from "./SearchBarAttr";
 import { Link } from 'react-router-dom';
 import Filter from "./Filter";
+import AddAttraction from "./AddAttraction";
 
 
-const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData, getAllComments, onHandleSubmitComment, fetchComments, commentData }) => {
+const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData, getAllComments, onHandleSubmitComment, fetchComments, commentData, onPostAttr, placeIdState }) => {
 
     const params = useParams()
 
@@ -18,7 +19,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
             return (
                 <Attraction
                     id={attr.id}
-                    // image={attr.image}
+                    image={attr.image}
                     name={attr.name}
                     likes={attr.likes}
                     key={attr.id}
@@ -57,6 +58,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
             <section>
                 {getAttrListJSX(attrData)}
             </section>
+            <div><AddAttraction onPostAttr={onPostAttr} placeIdState={placeIdState} /></div>
         </div>
     )
 }

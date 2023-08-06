@@ -249,14 +249,53 @@ function App() {
 
 
   const onHandleSubmitComment = (id, data) => {
+    console.log(placeIdState, id)
     axios
       .post(`${kBaseURL}/place/${placeIdState}/attraction/${id}/comment/`, data)
       .then(res => {
+        console.log("onhandle", res.data)
         setCommentData((pre) => [res.data, ...pre])
       })
       .catch((e) => console.log(e))
 
   }
+
+  const onPostPlaces = (uploadData) => {
+
+    axios.post(`${kBaseURL}/place/`, uploadData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then(res => {
+        console.log("New place created:", res.data);
+        setPlaceData((pre) => [res.data, ...pre])
+      })
+      .catch(error => {
+        console.error("Error creating new place:", error);
+      });
+
+  }
+
+  const onPostAttr = (uploadData) => {
+
+    axios.post(`${kBaseURL}/place/${placeIdState}/attractions/`, uploadData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then(res => {
+        console.log("New Attr created:", res.data);
+        setAttrData((pre) => [res.data, ...pre])
+      })
+      .catch(error => {
+        console.error("Error creating new Attraction:", error);
+      });
+
+  }
+
+
+
 
 
   // ===============================================================
@@ -308,12 +347,12 @@ function App() {
           <Route path='/SignUp' element={<SignUp onHandleValue={onHandleValue} handleSubmit={handleSubmit} userData={userData} />} /> */}
 
           <Route path='/' element={
-            <PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} />} />
+            <PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} onPostPlaces={onPostPlaces} />} />
 
           <Route path='/attractions/:id' element={
             <AttractionList
               attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
-              onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} />} />
+              onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} onPostAttr={onPostAttr} placeIdState={placeIdState} />} />
         </Routes>
       </BrowserRouter>
     </div >

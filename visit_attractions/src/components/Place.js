@@ -8,7 +8,7 @@ const Place = ({ placeID, image, name, onHandleAttractions }) => {
     return (
         <div className='place'>
             <div className='place-pic'>
-                {image}
+                <img src={image} alt="" width="200px" ></img>
             </div>
             <Link to={`/attractions/${placeID}`}>
                 {name}

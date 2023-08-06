@@ -1,7 +1,8 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import AddPlace from "../AddPlace";
 
-const Profile = () => {
+const Profile = ({ onPostPlaces }) => {
     const { user, isAuthenticated } = useAuth0();
 
     return (
@@ -12,6 +13,10 @@ const Profile = () => {
                 {/* <u1>
                     {Object.keys(user).map((objKey, 1))}
                 </u1> */}
+                <div>
+                    <div> User Profile</div>
+                    {/* <AddPlace onPostPlaces /> */}
+                </div>
 
             </article>
         )
