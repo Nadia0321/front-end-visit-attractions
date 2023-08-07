@@ -100,8 +100,8 @@ const getAllAttractions = (placeID) => {
 };
 
 const convertAttrFromAPI = (apiPlaces) => {
-  const { id, name, likes, dislike, description, favorite, place_id } = apiPlaces;
-  const newPlaces = { id, name, likes, dislike, description, favorite, placeID: place_id };
+  const { id, name, likes, dislike, description, favorite, image, place_id } = apiPlaces;
+  const newPlaces = { id, name, likes, dislike, description, favorite, image, placeID: place_id };
   return newPlaces
 }
 

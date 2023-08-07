@@ -26,7 +26,6 @@ const AddAttraction = ({ onPostAttr, placeIdState }) => {
         onPostAttr(uploadData)
         setNameState("")
 
-        setCoverPhoto("")
     }
 
     return (

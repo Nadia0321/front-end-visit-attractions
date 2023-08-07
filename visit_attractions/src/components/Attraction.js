@@ -44,7 +44,7 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
                 <div className="image-container">
 
                     <div>
-                        <img src={image} alt="" width="200px" ></img>
+                        <img src={image} alt="" width="200px" height="150px" ></img>
                     </div>
 
                     <div className="attr-icons"></div>

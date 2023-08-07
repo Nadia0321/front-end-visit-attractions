@@ -24,7 +24,7 @@ const AddPlace = ({ onPostPlaces }) => {
         uploadData.append("image", coverPhoto);
         onPostPlaces(uploadData)
         setNameState("")
-        setCoverPhoto(null)
+
     }
 
     return (
