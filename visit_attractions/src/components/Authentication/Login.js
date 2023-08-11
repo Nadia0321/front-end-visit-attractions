@@ -29,7 +29,6 @@ const Login = () => {
 
     const onHandleLogin = (event) => {
         event.preventDefault();
-        // checkUserPassword()
         checkUserLogin()
     }
 

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Place from "./Place";
 import SearchBarPlace from "./SearchBarPlace";
-// import Filter from "./Filter";
 import './PlaceList.css'
-import { Link } from 'react-router-dom';
 import LoginButton from "./Authentication/LoginButton";
 import LogoutButton from "./Authentication/LogoutButton";
 import Profile from "./Authentication/Profile";
 import AddPlace from "./AddPlace";
-
+import { Link } from "react-router-dom";
 
 
 
@@ -47,7 +45,9 @@ const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces, user, isAuthe
 
     return (
         <div className="body">
-
+            <Link to={`/profile`}>
+                Profile
+            </Link>
             {/*             
             <Link to={`/login`}>
                 Login
@@ -57,8 +57,8 @@ const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces, user, isAuthe
             </Link> */}
 
             <Profile onPostPlaces={onPostPlaces} user={user} isAuthenticated={isAuthenticated} />
-            <LoginButton />
-            <LogoutButton />
+            <LoginButton user={user} />
+            <LogoutButton user={user} />
             <section className="tab-container">
                 <SearchBarPlace onHandleSubmitPlace={onHandleSubmitPlace} />
 

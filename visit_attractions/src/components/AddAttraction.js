@@ -4,11 +4,17 @@ import { useState } from "react"
 const AddAttraction = ({ onPostAttr, placeIdState }) => {
     const [nameState, setNameState] = useState("")
     const [coverPhoto, setCoverPhoto] = useState(null)
+    const [description, setDescription] = useState("")
 
 
     const handleName = (event) => {
         const newName = event.target.value
         setNameState(newName)
+    }
+
+    const handleDescription = (event) => {
+        const newDescription = event.target.value
+        setDescription(newDescription)
     }
 
     const handleCoverPhoto = (event) => {
@@ -21,6 +27,7 @@ const AddAttraction = ({ onPostAttr, placeIdState }) => {
 
         const uploadData = new FormData();
         uploadData.append("name", nameState);
+        uploadData.append("description", description);
         uploadData.append("place_id", placeIdState);
         uploadData.append("image", coverPhoto);
         onPostAttr(uploadData)
@@ -33,6 +40,10 @@ const AddAttraction = ({ onPostAttr, placeIdState }) => {
             <div>
                 <label htmlFor="name">State Name:</label>
                 <input type="text" id='name' name='name' value={nameState} onChange={handleName} />
+            </div>
+            <div>
+                <label htmlFor="description">Description:</label>
+                <textarea type="text" id='description' name='description' value={description} onChange={handleDescription} />
             </div>
             <div>
                 <label htmlFor="coverPhoto">the image:</label>

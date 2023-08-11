@@ -8,14 +8,17 @@ import AddAttraction from "./AddAttraction";
 import GoogleMaps from "./Mappp"
 import Profile from "./Authentication/Profile";
 import axios from "axios";
+import Favorite from "./Favorite";
 
 
 
 
-const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData, getAllComments, onHandleSubmitComment, fetchComments, commentData, onPostAttr, placeIdState, user, isAuthenticated }) => {
+const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData, getAllComments, onHandleSubmitComment, fetchComments, commentData, onPostAttr, placeIdState, user, isAuthenticated, onHandleFavorite, onShowAll }) => {
 
     const params = useParams()
     const [showAddAttrForm, setShowAddAttrForm] = useState(false);
+    const [loading, setLoading] = useState(true);
+
 
     const toggleAddAttrForm = () => {
         setShowAddAttrForm(!showAddAttrForm);
@@ -59,37 +62,48 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
 
     // =======================================================================
     const [locationData, setLocationData] = useState([]);
-
+    console.log('attrData', attrData)
+    // console.log(process.env.REACT_APP_LOCATIONIQ_API_KEY)
 
     const getLanLon = async placeName => {
         const response = await axios
             .get('https://us1.locationiq.com/v1/search?key=YOUR_ACCESS_TOKEN&q=SEARCH_STRING&format=json', {
                 params: {
-                    key: 'pk.4865d18a3669ca2b5e6e15f6880ad8db',
+                    key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
                     q: placeName,
                     format: 'JSON',
                 },
-
+            }).catch((error) => {
+                console.error('Error fetching location:', error);
+                throw error;
             })
         const { lat: latitudeStr, lon: longitudeStr } = response.data[0]
         const lat = parseFloat(latitudeStr);
         const lng = parseFloat(longitudeStr);
-        return { lat, lng }
-
+        return { lat, lng };
     }
+
+
+
+
     const wait = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds));
 
     const lookupPlaces = async () => {
         const result = [];
+        // const defaultLocations = ['Central Park, New York City', 'Summit One Vanderbilt, New York City']
         let defaultLocations = [];
+        console.log('attrData in look up', attrData)
+        console.log('default2', defaultLocations)
         attrData.forEach((attr) => {
             defaultLocations.push(attr.name);
         });
+
         for (const place of defaultLocations) {
             result.push(await getLanLon(place));
             await wait(1000);
         }
-        console.log(result);
+
+        console.log('lookup result', result);
         return result;
     };
 
@@ -97,7 +111,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
         lookupPlaces().then(result => {
             setLocationData(result);
         });
-    }, []);
+    }, [attrData]);
 
     // const location = [
 
@@ -112,33 +126,37 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
                 Home
             </Link>
             <Profile user={user} isAuthenticated={isAuthenticated} />
-            <section className='search-bar' >
-                <SearchBarAttr onHandleSubmitAttr={onHandleSubmitAttr} />
-                <Filter sortData={sortData} />
-            </section>
-
             {isAuthenticated && (
                 <div>
-
+                    <Favorite attrData={attrData} user={user} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} />
                     <button onClick={toggleAddAttrForm}> Add attraction</button>
                     {showAddAttrForm && (
                         <div>
                             <p onClick={closeAddAttrForm}>X</p>
                             <AddAttraction onPostAttr={onPostAttr} placeIdState={placeIdState} />
+
                         </div>)}
                 </div>
 
             )}
+            <section className='search-bar' >
+                <SearchBarAttr onHandleSubmitAttr={onHandleSubmitAttr} />
+                <Filter sortData={sortData} />
+            </section>
+
             <section>
                 {getAttrListJSX(attrData)}
             </section>
             <div></div>
 
-
-
             {/* <GoogleMaps location={location} /> */}
+            {/* {loading ? (
+                <p>Loading...</p>
+            ) : ( */}
             {locationData.length > 0 &&
-                <GoogleMaps location={locationData} />}
+                <GoogleMaps location={locationData} />
+
+            }
 
 
         </div>

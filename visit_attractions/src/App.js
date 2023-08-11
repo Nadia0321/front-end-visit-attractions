@@ -5,6 +5,7 @@ import AttractionList from './components/AttractionList';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from "axios"
 import { useAuth0 } from "@auth0/auth0-react";
+import ProfilePage from './components/ProfilePage';
 
 
 const kBaseURL = "https://back-end-visit-attraction.onrender.com";
@@ -43,7 +44,7 @@ function App() {
   const [unmodifiedAttrData, setunmodifiedAttrData] = useState([])
   const [unmodifiedPlaceData, setUnmodifiedPlaceData] = useState([])
   const { user, isAuthenticated } = useAuth0();
-
+  const [showFavorites, setShowFavorites] = useState(false);
   // console.log("isAthenticated", isAthenticated)
 
 
@@ -220,10 +221,24 @@ function App() {
 
   }
 
+  const onHandleFavorite = () => {
+    setAttrData(attrData.filter(attr => attr.favorite === true))
+  }
+
+  const onShowAll = () => {
+    getAllAttractions(placeIdState)
+      .then((attractions) => {
+        setAttrData(attractions)
+      })
+  }
 
 
-  const locations = ['New York', 'State College', 'Washington D.C.'];
 
+  const userFavaroriteAttractions = () => {
+    const favorites = attrData.filter(attr => attr.favorite === true)
+    console.log(favorites)
+    return favorites
+  }
 
   return (
     <div className="App">
@@ -232,21 +247,17 @@ function App() {
       </header>
       <BrowserRouter>
         <Routes>
-          {/* <Route path='/login' element={<Login loginUser={loginUser} />} />
-          <Route path='/SignUp' element={<SignUp onHandleValue={onHandleValue} handleSubmit={handleSubmit} userData={userData} />} /> */}
-
+          <Route path='/profile' element={<ProfilePage attrData={attrData} userFavaroriteAttractions={userFavaroriteAttractions} />} />
           <Route path='/' element={
             <PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} onPostPlaces={onPostPlaces} user={user} isAuthenticated={isAuthenticated} />} />
 
           <Route path='/attractions/:id' element={
             <AttractionList
               attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
-              onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} onPostAttr={onPostAttr} placeIdState={placeIdState} user={user} isAuthenticated={isAuthenticated} locations={locations} />} />
+              onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} onPostAttr={onPostAttr} placeIdState={placeIdState} user={user} isAuthenticated={isAuthenticated} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} />} />
         </Routes>
       </BrowserRouter>
     </div >
-
-
   );
 }
 
