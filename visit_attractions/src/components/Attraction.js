@@ -7,7 +7,7 @@ import SingleComment from "./singleComment";
 
 
 
-const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeClick, favorite, onFavoriteClick, onHandleSubmitComment, commentData, fetchComments }) => {
+const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeClick, favorite, description, onFavoriteClick, onHandleSubmitComment, commentData, fetchComments }) => {
 
     const [showModal, setShowModal] = useState(false);
 
@@ -40,7 +40,10 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
     return (
         <div>
 
-            <div className="attr-container">
+            <div className="attr-container"><h4>
+                {/* attraction name */}
+                {name}
+            </h4>
                 <div className="image-container">
 
                     <div>
@@ -54,10 +57,8 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
                     <button className="favorite" onClick={() => onFavoriteClick(id)}>{favorireIcon}</button>
                     <button className="comment" onClick={() => onCommentClick(id)}>comment</button>
                 </div>
-                <h4>
-                    {/* attraction name */}
-                    {name}
-                </h4>
+                <p>{description}</p>
+
             </div >
 
             {showModal ? (

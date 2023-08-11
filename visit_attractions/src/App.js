@@ -4,84 +4,10 @@ import PlaceList from './components/PlaceList'
 import AttractionList from './components/AttractionList';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import axios from "axios"
-import Login from './components/Authentication/Login';
-import SignUp from './components/Authentication/SignUp';
-// import { Link } from 'react-router-dom';
-// import LoginButton from './components/Authentication/LoginButton';
-// import LogoutButton from './components/Authentication/LogoutButton';
+import { useAuth0 } from "@auth0/auth0-react";
 
-const DATA = [
-  {
-    'id': 1,
-    'name': 'New York',
-    // 'image': 'an image',
-    'description': 'some text',
-    'country': 'USA',
-    'state': 'New York',
-    // 'userID': 1
-  },
-  {
-    'id': 2,
-    'name': 'Georgia',
-    // 'image': 'an image',
-    'description': 'some text',
-    'country': 'USA',
-    'state': 'Georgia',
-    // 'user_id': 1
-  },
 
-]
-
-const attrDATA = [
-  {
-    'id': 1,
-    'name': 'Liberty',
-    'likes': 0,
-    'placeID': 1,
-    'image': 'something',
-    'description': 'something',
-    'dislike': 0,
-    'favorite': false,
-    'user_id': 1
-  },
-
-  {
-    'id': 2,
-    'name': 'Observation deck',
-    'likes': 0,
-    'placeID': 1,
-    'image': 'something',
-    'description': 'something',
-    'dislike': 0,
-    'favorite': false,
-    'user_id': 1
-  },
-  {
-    'id': 3,
-    'name': 'Central Park',
-    'likes': 0,
-    'placeID': 1,
-    'image': 'something',
-    'description': 'something',
-    'dislike': 0,
-    'favorite': false,
-    'user_id': 1
-  },
-
-  {
-    'id': 4,
-    'name': 'World center',
-    'likes': 0,
-    'placeID': 1,
-    'image': 'something',
-    'description': 'something',
-    'dislike': 0,
-    'favorite': false,
-    'user_id': 1
-  }
-]
-
-const kBaseURL = "http://localhost:8000";
+const kBaseURL = "https://back-end-visit-attraction.onrender.com";
 
 const getAllPlaces = () => {
   return axios
@@ -116,9 +42,9 @@ function App() {
   const [attrData, setAttrData] = useState([])
   const [unmodifiedAttrData, setunmodifiedAttrData] = useState([])
   const [unmodifiedPlaceData, setUnmodifiedPlaceData] = useState([])
-  // const navigate = useNavigate()
+  const { user, isAuthenticated } = useAuth0();
 
-
+  // console.log("isAthenticated", isAthenticated)
 
 
   const fetchPlaces = () => {
@@ -228,7 +154,7 @@ function App() {
     return axios
       .get(`${kBaseURL}/places/${placeIdState}/attractions/${id}/comment/`)
       .then((res) => {
-        // console.log("in app1", res.data)
+
         return res.data
       })
       .catch(err => console.log(err))
@@ -296,50 +222,13 @@ function App() {
 
 
 
-
-
-  // ===============================================================
-  // const onHandleValue = (event) => {
-  //   const fieldName = event.target.name;
-  //   const fieldValue = event.target.value;
-
-  //   console.log(event.target.value)
-  //   const newFormData = { ...userData, [fieldName]: fieldValue }
-
-  //   setUserData(newFormData)
-  // }
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const newUser = {
-  //     name: userData.name,
-  //     username: userData.username,
-  //     email: userData.email,
-  //   }
-  //   console.log('new user:', newUser)
-  //   onSubmitUser(newUser)
-  //   setUserData({ name: '', username: '', email: '' })
-  // }
-
-  // const onSubmitUser = (data) => {
-  //   return axios
-  //     .post(`${kBaseURL}/users/`, data)
-  //     .then((response) => {
-  //       console.log(response.data)
-  //       setUserData((prevData) => [...prevData, response.data])
-
-  //       // navigate('/');
-  //     })
-
-  //     .catch((e) => console.log(e))
-  // }
-
+  const locations = ['New York', 'State College', 'Washington D.C.'];
 
 
   return (
     <div className="App">
       <header className="App-header">
-
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgCSWniXtWJQqrfI-PLim7gOQjZbJfkB8&libraries=places"></script>
       </header>
       <BrowserRouter>
         <Routes>
@@ -347,12 +236,12 @@ function App() {
           <Route path='/SignUp' element={<SignUp onHandleValue={onHandleValue} handleSubmit={handleSubmit} userData={userData} />} /> */}
 
           <Route path='/' element={
-            <PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} onPostPlaces={onPostPlaces} />} />
+            <PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} onPostPlaces={onPostPlaces} user={user} isAuthenticated={isAuthenticated} />} />
 
           <Route path='/attractions/:id' element={
             <AttractionList
               attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
-              onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} onPostAttr={onPostAttr} placeIdState={placeIdState} />} />
+              onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} onPostAttr={onPostAttr} placeIdState={placeIdState} user={user} isAuthenticated={isAuthenticated} locations={locations} />} />
         </Routes>
       </BrowserRouter>
     </div >

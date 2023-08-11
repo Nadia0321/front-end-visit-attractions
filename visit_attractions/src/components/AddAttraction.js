@@ -31,11 +31,11 @@ const AddAttraction = ({ onPostAttr, placeIdState }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <lable htmlFor="name">State Name:</lable>
+                <label htmlFor="name">State Name:</label>
                 <input type="text" id='name' name='name' value={nameState} onChange={handleName} />
             </div>
             <div>
-                <lable htmlFor="coverPhoto">the image:</lable>
+                <label htmlFor="coverPhoto">the image:</label>
                 <input type="file" id='coverPhoto' name='coverPhoto' onChange={handleCoverPhoto} />
             </div>
             <div><input type="submit" value="Post"></input></div>

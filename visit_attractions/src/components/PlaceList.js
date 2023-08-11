@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Place from "./Place";
 import SearchBarPlace from "./SearchBarPlace";
 // import Filter from "./Filter";
@@ -13,7 +13,16 @@ import AddPlace from "./AddPlace";
 
 
 
-const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces }) => {
+const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces, user, isAuthenticated }) => {
+    const [showAddPlaceForm, setShowAddPlaceForm] = useState(false);
+
+    const toggleAddPlaceForm = () => {
+        setShowAddPlaceForm(!showAddPlaceForm);
+    }
+
+    const closeAddPlaceForm = () => {
+        setShowAddPlaceForm(!showAddPlaceForm);
+    }
 
     const getPlaceListJSX = () => {
         return placeData.map((place) => {
@@ -47,7 +56,7 @@ const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces }) => {
                 Sign up
             </Link> */}
 
-            <Profile onPostPlaces={onPostPlaces} />
+            <Profile onPostPlaces={onPostPlaces} user={user} isAuthenticated={isAuthenticated} />
             <LoginButton />
             <LogoutButton />
             <section className="tab-container">
@@ -58,10 +67,18 @@ const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces }) => {
                 {getPlaceListJSX()}
             </div>
             <br /><br />
-            <div>
-                <AddPlace onPostPlaces={onPostPlaces} />
-            </div>
+            {isAuthenticated && (
+                <div>
 
+                    <button onClick={toggleAddPlaceForm}> Add Place</button>
+                    {showAddPlaceForm && (
+                        <div>
+                            <p onClick={closeAddPlaceForm}>X</p>
+                            <AddPlace onPostPlaces={onPostPlaces} />
+                        </div>)}
+                </div>
+
+            )}
         </div>
     )
 
