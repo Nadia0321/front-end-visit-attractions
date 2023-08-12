@@ -5,9 +5,9 @@ import React from "react";
 const DeletePost = ({ handleDeleteAttraction, postAttractions }) => {
 
 
-    const onDeleteClick = (attractionId) => {
+    const onDeleteClick = (attr) => {
         if (window.confirm("Are you sure you want to delete this post?")) {
-            handleDeleteAttraction(attractionId);
+            handleDeleteAttraction(attr);
         }
     };
 

@@ -125,6 +125,10 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
             <Link to={`/`}>
                 Home
             </Link>
+            <br />
+            <Link to={`/profile`}>
+                Profile
+            </Link>
             <Profile user={user} isAuthenticated={isAuthenticated} />
             {isAuthenticated && (
                 <div>

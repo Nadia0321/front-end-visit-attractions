@@ -28,10 +28,11 @@ const UserPosts = ({ user, placeIdState }) => {
     }, []);
 
 
-    const handleDeleteAttraction = (attractionId) => {
+    const handleDeleteAttraction = (attrID) => {
 
+        const attractionId = attrID
         return axios
-            .delete(`${kBaseURL}/place/${placeIdState}/attractions/${attractionId}/`)
+            .delete(`${kBaseURL}/attractions/delete/${attrID}/?username=${user.sub}`)
             .then(res => setPostAttractions(prevAttractions => prevAttractions.filter(attr => attr.id !== attractionId)))
             .catch(e => console.log(e))
     }
@@ -40,26 +41,22 @@ const UserPosts = ({ user, placeIdState }) => {
     const getPostAttractions = () => {
         return postAttractions.map((attr) => {
             return (
-                <FavoriteAttractions
-                    id={attr.id}
-                    image={attr.image}
-                    name={attr.name}
-                    key={attr.id}
-                />)
+                <div key={attr.id}>
+                    <FavoriteAttractions
+                        id={attr.id}
+                        image={attr.image}
+                        name={attr.name}
+                    />
+                    <button onClick={() => handleDeleteAttraction(attr.id)}>Delete Post</button>
+                </div >)
         })
     }
 
     return (
-
-
         <div>
             <section>
                 <div>{getPostAttractions()}</div>
-
-                <DeletePost handleDeleteAttraction={handleDeleteAttraction} postAttractions={postAttractions} />
             </section>
-
-
         </div>
     )
 }
