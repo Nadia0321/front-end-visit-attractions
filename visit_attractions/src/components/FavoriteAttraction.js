@@ -1,7 +1,7 @@
 import React from "react";
 import './Attraction.css'
 
-const FavoriteAttractions = ({ name, image, id }) => {
+const FavoriteAttractions = ({ name, image }) => {
 
 
     return (

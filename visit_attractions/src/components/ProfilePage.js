@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import Profile from "./Authentication/Profile";
 import axios from "axios";
 import FavoriteAttractions from "./FavoriteAttraction";
-import Attraction from "./Attraction";
+import UserPosts from "./UserPosts";
 
 const kBaseURL = "https://back-end-visit-attraction.onrender.com";
-const ProfilePage = ({ attrData, userFavaroriteAttractions }) => {
+
+
+
+const ProfilePage = ({ user, placeIdState }) => {
     const [favoriteAttractions, setFavoriteAttractions] = useState([]);
 
     const displayFavorites = () => {
@@ -32,17 +35,20 @@ const ProfilePage = ({ attrData, userFavaroriteAttractions }) => {
         })
     }
 
-    // userFavaroriteAttractions()
     return (
         <div>
             <Link to={`/`}>
                 Home
             </Link>
-            <div>Profile</div>
-            <Profile />
+            <section>
+                <Profile user={user} />
+            </section>
             <p>Favorite Attractions</p>
             <section>{getfavoriteAttractions()}</section>
             <p>User Posts</p>
+            <section>
+                <UserPosts user={user} placeIdState={placeIdState} />
+            </section>
         </div>
     )
 }

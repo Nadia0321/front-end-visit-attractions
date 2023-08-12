@@ -240,6 +240,9 @@ function App() {
     return favorites
   }
 
+
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -247,7 +250,7 @@ function App() {
       </header>
       <BrowserRouter>
         <Routes>
-          <Route path='/profile' element={<ProfilePage attrData={attrData} userFavaroriteAttractions={userFavaroriteAttractions} />} />
+          <Route path='/profile' element={<ProfilePage attrData={attrData} userFavaroriteAttractions={userFavaroriteAttractions} user={user} placeIdState={placeIdState} />} />
           <Route path='/' element={
             <PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} onPostPlaces={onPostPlaces} user={user} isAuthenticated={isAuthenticated} />} />
 
