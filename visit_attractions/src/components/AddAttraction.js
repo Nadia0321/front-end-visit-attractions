@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-const AddAttraction = ({ onPostAttr, placeIdState }) => {
+const AddAttraction = ({ onPostAttr, placeIdState, user }) => {
     const [nameState, setNameState] = useState("")
     const [coverPhoto, setCoverPhoto] = useState(null)
     const [description, setDescription] = useState("")
@@ -21,7 +21,7 @@ const AddAttraction = ({ onPostAttr, placeIdState }) => {
         const newCoverPhoto = event.target.files[0]
         setCoverPhoto(newCoverPhoto)
     }
-
+    console.log(user.sub)
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -29,9 +29,11 @@ const AddAttraction = ({ onPostAttr, placeIdState }) => {
         uploadData.append("name", nameState);
         uploadData.append("description", description);
         uploadData.append("place_id", placeIdState);
+        uploadData.append("created_by", user.sub);
         uploadData.append("image", coverPhoto);
         onPostAttr(uploadData)
         setNameState("")
+        setDescription("")
 
     }
 

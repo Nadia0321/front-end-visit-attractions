@@ -133,7 +133,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
                     {showAddAttrForm && (
                         <div>
                             <p onClick={closeAddAttrForm}>X</p>
-                            <AddAttraction onPostAttr={onPostAttr} placeIdState={placeIdState} />
+                            <AddAttraction onPostAttr={onPostAttr} placeIdState={placeIdState} user={user} />
 
                         </div>)}
                 </div>
