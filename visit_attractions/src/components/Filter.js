@@ -1,4 +1,6 @@
 import { useState } from "react";
+import './Filter.css'
+
 
 const Filter = ({ attrData, sortData }) => {
     const [selectedValue, setSelectedValue] = useState('');

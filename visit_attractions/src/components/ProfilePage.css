@@ -1,0 +1,22 @@
+.profile {
+    color: #fff;
+    margin-left: 3rem;
+    margin-bottom: 4rem;
+
+}
+
+.parent-favorite {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* margin: 0 3rem; */
+    margin-bottom: 4rem;
+
+}
+
+.image {
+    box-shadow: 0 0 15px 0 #fff;
+}
+
+attraction-container {
+    margin-bottom: 4rem;
+}

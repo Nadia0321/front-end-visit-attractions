@@ -1,0 +1,13 @@
+.attraction_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 15rem;
+}
+
+/* .NavLink {
+    text-decoration: none;
+    color: white;
+} */

@@ -4,7 +4,7 @@ import Profile from "./Authentication/Profile";
 import axios from "axios";
 import FavoriteAttractions from "./FavoriteAttraction";
 import UserPosts from "./UserPosts";
-
+import './ProfilePage.css'
 const kBaseURL = "https://back-end-visit-attraction.onrender.com";
 
 
@@ -36,16 +36,16 @@ const ProfilePage = ({ user, placeIdState }) => {
     }
 
     return (
-        <div>
-            <Link to={`/`}>
+        <div className="profile">
+            {/* <Link to={`/`}>
                 Home
-            </Link>
-            <section>
+            </Link> */}
+            {/* <section>
                 <Profile user={user} />
-            </section>
-            <p>Favorite Attractions</p>
-            <section>{getfavoriteAttractions()}</section>
-            <p>User Posts</p>
+            </section> */}
+            <h2>Favorite Attractions</h2>
+            <section className="parent-favorite">{getfavoriteAttractions()}</section>
+            <h2>User Posts</h2>
             <section>
                 <UserPosts user={user} placeIdState={placeIdState} />
             </section>

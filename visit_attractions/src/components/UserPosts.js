@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import Profile from "./Authentication/Profile";
 import axios from "axios";
 import FavoriteAttractions from "./FavoriteAttraction";
-import Attraction from "./Attraction";
-import DeletePost from "./DeletePost";
+import './UserPost.css'
+
+import { Delete } from '@mui/icons-material'
 
 
 const UserPosts = ({ user, placeIdState }) => {
@@ -41,13 +42,15 @@ const UserPosts = ({ user, placeIdState }) => {
     const getPostAttractions = () => {
         return postAttractions.map((attr) => {
             return (
-                <div key={attr.id}>
+                <div className='favorite-items' key={attr.id}>
                     <FavoriteAttractions
                         id={attr.id}
                         image={attr.image}
                         name={attr.name}
+                        handleDeleteAttraction={handleDeleteAttraction}
                     />
-                    <button onClick={() => handleDeleteAttraction(attr.id)}>Delete Post</button>
+                    {/* <button >Delete Post</button> */}
+                    <Delete className='delete-btn' onClick={() => handleDeleteAttraction(attr.id)} fontSize="large" />
                 </div >)
         })
     }

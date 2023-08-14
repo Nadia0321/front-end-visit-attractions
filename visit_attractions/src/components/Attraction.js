@@ -1,17 +1,16 @@
 import React from "react";
-import './Attraction.css'
 import { } from 'react-icons/fa'
 import Comment from "./Comment";
 import { useState } from "react";
 import SingleComment from "./singleComment";
-
-
+import './Attraction.css'
+import { ThumbUp, ThumbDown, Comment as CommentIcon, BookmarksRounded, BookmarkBorder } from "@mui/icons-material"
 
 const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeClick, favorite, description, onFavoriteClick, onHandleSubmitComment, commentData, fetchComments }) => {
 
     const [showModal, setShowModal] = useState(false);
 
-    let favorireIcon = favorite ? '💙' : '🤍'
+    let favorireIcon = favorite ? <BookmarksRounded onClick={() => onFavoriteClick(id)} /> : <BookmarkBorder onClick={() => onFavoriteClick(id)} />
 
 
     const onCommentClick = () => {
@@ -38,41 +37,47 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
     };
 
     return (
-        <div>
-
-            <div className="attr-container"><h4>
-                {/* attraction name */}
-                {name}
-            </h4>
-                <div className="image-container">
-
-                    <div>
-                        <img src={image} alt="" width="200px" height="150px" ></img>
-                    </div>
-
-                    <div className="attr-icons"></div>
-
-                    <button className="like" onClick={() => onLikeClick(id)}>like: {likes} </button>
-                    <button className="dislike" onClick={() => onDislikeClick(id)}>dislike: {dislike} </button>
-                    <button className="favorite" onClick={() => onFavoriteClick(id)}>{favorireIcon}</button>
-                    <button className="comment" onClick={() => onCommentClick(id)}>comment</button>
+        <div class="attraction-list">
+            <div class="attraction">
+                <div class="attraction-body">
+                    <h4>{name}</h4>
+                    <p className="attraction-text">{description}</p>
                 </div>
-                <p>{description}</p>
+
+                <div className="ld flex" >
+                    <div >
+                        <ThumbUp onClick={() => onLikeClick(id)} /> {likes}
+                    </div>
+                    <div>
+                        <ThumbDown onClick={() => onDislikeClick(id)} /> {dislike}
+                    </div>
+                </div>
+                <div className="cf flex">
+                    <div>
+                        {favorireIcon}
+                    </div>
+                    <div>
+                        <CommentIcon className="like" onClick={() => onCommentClick(id)} />
+                    </div>
+                </div>
+                <div className="attraction-images">
+                    <img class="img img1" src={image} alt="" />
+                    <img class="img img2" src={image} alt="" />
+                    <img class="img img3" src={image} alt="" />
+                </div>
 
             </div >
 
             {showModal ? (
                 <div>
                     <div onClick={closeModal}>✖</div>
-                    <Comment onHandleSubmitComment={onHandleSubmitComment} id={id} commentData={commentData} />
-                    <div>{getComentJSX()}</div>
+                    <Comment onHandleSubmitComment={onHandleSubmitComment} id={id} commentData={commentData} getComentJSX={getComentJSX} />
+                    {/* <div>{getComentJSX()}</div> */}
 
                 </div>
             ) : (
                 <></>
             )}
-
-
         </div>
     )
 }

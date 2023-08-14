@@ -1,18 +1,203 @@
-.App {
-  text-align: center;
+:root {
+  --color-primary: rgb(157, 0, 0);
+  --color-secondary: rgb(63, 14, 14);
+  --color-thirdly: rgb(48, 48, 48);
+  --color-fourthly: rgb(28, 26, 26);
+  --color-last: #000;
+
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+body {
+  margin: 0;
+  background-color: var(--color-last);
+  /* background-color: rgb(0, 33, 54) */
+}
 
+.main {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  position: relative;
+}
 
+.mainBody {
+  height: 100%;
+  overflow: auto;
+  margin-bottom: 5rem;
+}
 
+/* ============================== */
 .App-header {
-  background-color: #282c34;
-  min-height: 20vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(/Users/nadia/developer/projects/Visit_attr_project/project_files/Pictures_Capstone/US_Attractions/statue-rainbow-bridge-night-tokyo-japan.jpg);
+  /* 
+ background: url('/Users/nadia/developer/projects/Visit_attr_project/project_files/Pictures_Capstone/BB_adff226b-0669-46da-ba29-b8411165dfdd_FPpreview.mp4') no-repeat center center fixed; */
+  height: 100vh;
+  /* ############################## */
+  /* width: 120vw; */
+  background-size: cover;
+  background-position: bottom;
+  position: relative;
+
+
+
+
+}
+
+.NavLink {
+  text-decoration: none;
   color: white;
 }
+
+.NavLink:hover {}
+
+.logo-box {
+  position: absolute;
+  top: 4rem;
+  left: 3rem;
+  background-color: aquamarine;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  padding: 1rem;
+  /* background-color: aqua; */
+  display: inline-block;
+  position: absolute;
+  top: 40%;
+  left: 5.5%;
+  /* transform: translate(-50%, ); */
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 1rem;
+  animation-name: moveFromBottom;
+  animation-timing-function: ease-out;
+  animation-duration: 1s;
+}
+
+.heading-primary-sub {
+  display: block;
+  letter-spacing: .75rem;
+  font-weight: 600;
+  font-size: .85rem;
+  padding: 1.2rem;
+  animation-name: moveFromBottom;
+  animation-timing-function: ease-out;
+  animation-duration: 1.2s;
+}
+
+.heading-primary-third {
+  display: block;
+  letter-spacing: .78rem;
+  font-weight: 600;
+  font-size: 1.8rem;
+  animation-name: moveFromBottom;
+  animation-timing-function: ease-out;
+  animation-duration: 1.6s;
+}
+
+@keyframes moveFromBottom {
+
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+.footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  border-top: 1px solid #fff;
+
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+
+}
+
+.logo img {
+  max-width: 4rem;
+  max-height: 4rem;
+}
+
+.list {
+  display: block;
+  flex-direction: column;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: .2rem 0;
+}
+
+.list-item::before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background-color: #000;
+  margin-right: 10px;
+}
+
+/* .logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  max-width: 4rem;
+  max-height: 4rem;
+  margin-right: 10px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.list-item {
+  margin: 0 10px;
+} */
+
+
+/* .footer-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  color: white;
+} */

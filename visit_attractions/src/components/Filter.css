@@ -1,0 +1,9 @@
+.filter {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    appearance: none;
+    color: white;
+    font-size: 1.3rem;
+    font-family: "UntitledSans";
+}

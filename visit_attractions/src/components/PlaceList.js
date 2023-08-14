@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 import Place from "./Place";
 import SearchBarPlace from "./SearchBarPlace";
-import './PlaceList.css'
+import styles from './PlaceList.module.css'
 import LoginButton from "./Authentication/LoginButton";
 import LogoutButton from "./Authentication/LogoutButton";
 import Profile from "./Authentication/Profile";
 import AddPlace from "./AddPlace";
 import { Link } from "react-router-dom";
-
+import styles2 from './Authentication/Btns.module.css'
 
 
 
 const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces, user, isAuthenticated }) => {
-    const [showAddPlaceForm, setShowAddPlaceForm] = useState(false);
-
-    const toggleAddPlaceForm = () => {
-        setShowAddPlaceForm(!showAddPlaceForm);
-    }
-
-    const closeAddPlaceForm = () => {
-        setShowAddPlaceForm(!showAddPlaceForm);
-    }
 
     const getPlaceListJSX = () => {
         return placeData.map((place) => {
@@ -45,40 +36,17 @@ const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces, user, isAuthe
 
     return (
         <div className="body">
-            <Link to={`/profile`}>
+            {/* <Link to={`/profile`}>
                 Profile
-            </Link>
-            {/*             
-            <Link to={`/login`}>
-                Login
-            </Link>
-            <Link to={`/signUp`}>
-                Sign up
             </Link> */}
 
-            <Profile onPostPlaces={onPostPlaces} user={user} isAuthenticated={isAuthenticated} />
-            <LoginButton user={user} />
-            <LogoutButton user={user} />
-            <section className="tab-container">
-                <SearchBarPlace onHandleSubmitPlace={onHandleSubmitPlace} />
 
-            </section>
-            <div className="Placelist-container">
+
+            <div className={styles.placeList}>
                 {getPlaceListJSX()}
             </div>
             <br /><br />
-            {isAuthenticated && (
-                <div>
 
-                    <button onClick={toggleAddPlaceForm}> Add Place</button>
-                    {showAddPlaceForm && (
-                        <div>
-                            <p onClick={closeAddPlaceForm}>X</p>
-                            <AddPlace onPostPlaces={onPostPlaces} />
-                        </div>)}
-                </div>
-
-            )}
         </div>
     )
 

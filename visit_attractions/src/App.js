@@ -2,10 +2,14 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import PlaceList from './components/PlaceList'
 import AttractionList from './components/AttractionList';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import axios from "axios"
 import { useAuth0 } from "@auth0/auth0-react";
 import ProfilePage from './components/ProfilePage';
+import Sidebar from './components/Sidebar';
+import NavBar from './components/NavBar';
+import Filter from './components/Filter';
+
 
 
 const kBaseURL = "https://back-end-visit-attraction.onrender.com";
@@ -34,9 +38,6 @@ const convertAttrFromAPI = (apiPlaces) => {
 
 // ==============================================================================================
 function App() {
-  // const [loginUser, setLoginUser] = useState({})
-  // const [isLogin, setIsLogin] = useState(false)
-  // const [userData, setUserData] = useState({ name: '', username: '', email: '' })
   const [commentData, setCommentData] = useState([])
   const [placeIdState, setPlaceIdState] = useState("")
   const [placeData, setPlaceData] = useState([])
@@ -44,9 +45,6 @@ function App() {
   const [unmodifiedAttrData, setunmodifiedAttrData] = useState([])
   const [unmodifiedPlaceData, setUnmodifiedPlaceData] = useState([])
   const { user, isAuthenticated } = useAuth0();
-  const [showFavorites, setShowFavorites] = useState(false);
-  // console.log("isAthenticated", isAthenticated)
-
 
   const fetchPlaces = () => {
     getAllPlaces()
@@ -244,23 +242,63 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgCSWniXtWJQqrfI-PLim7gOQjZbJfkB8&libraries=places"></script>
-      </header>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/profile' element={<ProfilePage attrData={attrData} userFavaroriteAttractions={userFavaroriteAttractions} user={user} placeIdState={placeIdState} />} />
-          <Route path='/' element={
-            <PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} onPostPlaces={onPostPlaces} user={user} isAuthenticated={isAuthenticated} />} />
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <div className='logo-box'>
+            <img src="/Users/nadia/developer/projects/Visit_attr_project/project_files/Pictures_Capstone/logo.jpg" alt="logo" className='logo' />
+          </div>
+          <NavBar>
+            <Link to={`/`} className='NavLink'>
+              Home
+            </Link>
+            <br />
+            <Link to={`/profile`} className='NavLink'>
+              Profile
+            </Link>
+            <Filter sortData={sortData} />
+          </NavBar>
+          <h1 className='heading-primary'>
+            <span className='heading-primary-main'>Visit Attractions</span>
+            <span className='heading-primary-sub'>Capturing America's Wonders</span>
+            <span className='heading-primary-third'>Frame by Frame</span>
+          </h1>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgCSWniXtWJQqrfI-PLim7gOQjZbJfkB8&libraries=places"></script>
 
-          <Route path='/attractions/:id' element={
-            <AttractionList
-              attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
-              onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} onPostAttr={onPostAttr} placeIdState={placeIdState} user={user} isAuthenticated={isAuthenticated} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} />} />
-        </Routes>
-      </BrowserRouter>
-    </div >
+        </header>
+        <main className='main'>
+          <Sidebar user={user} onPostPlaces={onPostPlaces} isAuthenticated={isAuthenticated} attrData={attrData} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} onPostAttr={onPostAttr} placeIdState={placeIdState} onHandleSubmitPlace={onHandleSubmitPlace} onHandleSubmitAttr={onHandleSubmitAttr} />
+          <div>
+            <Routes>
+              <Route path='/profile' element={<ProfilePage attrData={attrData} userFavaroriteAttractions={userFavaroriteAttractions} user={user} placeIdState={placeIdState} />} />
+              <Route path='/' element={
+                <PlaceList placeData={placeData} onHandleSubmitPlace={onHandleSubmitPlace} onPostPlaces={onPostPlaces} user={user} isAuthenticated={isAuthenticated} />} />
+              <Route path='/attractions/:id' element={
+                <AttractionList
+                  attrData={attrData} onLikeClick={onLikeClick} onDislikeClick={onDislikeClick} onFavoriteClick={onFavoriteClick}
+                  onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} onPostAttr={onPostAttr} placeIdState={placeIdState} user={user} isAuthenticated={isAuthenticated} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} />} />
+            </Routes>
+          </div>
+          <footer class="footer">
+            <div className='footer-wrapper'>
+              <div class="logo">
+                <img src="" alt="Logo" />
+              </div>
+              <ul class="list">
+                <li class="list-item">[Privacy Policy] | [Terms of Use] | [Site Map]
+                </li>
+                <li class="list-item">© 2023 USA Attractions Explorer. All rights reserved.
+                </li>
+                <li class="list-item">sa[Contact Information]</li>
+                <li class="list-item">Email: info@usavisitattractions.com</li>
+                <li class="list-item">Follow us:</li>
+              </ul>
+            </div>
+
+          </footer>
+        </main>
+      </div >
+    </BrowserRouter>
   );
 }
 

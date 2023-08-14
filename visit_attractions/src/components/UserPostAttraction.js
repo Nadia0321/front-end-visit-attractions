@@ -5,7 +5,7 @@ import { Delete } from '@mui/icons-material'
 
 
 
-const FavoriteAttractions = ({ id, name, image }) => {
+const UserPostAttraction = ({ id, name, image, handleDeleteAttraction }) => {
 
 
     return (
@@ -16,10 +16,10 @@ const FavoriteAttractions = ({ id, name, image }) => {
             <div className="image-container">
 
                 <img className='image' src={image} alt="" width="250px" height="200px" ></img>
-                {/* <Delete className='delete-btn' fontSize="large" /> */}
+                <Delete className='delete-btn' onClick={() => handleDeleteAttraction(id)} fontSize="large" />
             </div>
         </section>
     )
 
 }
-export default FavoriteAttractions
+export default UserPostAttraction

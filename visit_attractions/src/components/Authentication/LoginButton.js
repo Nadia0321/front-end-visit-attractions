@@ -19,7 +19,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-
+import styles from './Btns.module.css'
 
 const kBaseURL = "https://back-end-visit-attraction.onrender.com";
 
@@ -38,7 +38,8 @@ const LoginButton = ({ user }) => {
             if (user) {
                 setLoading(true);
                 try {
-                    const response = await axios.get(`${kBaseURL}/users/${user.sub}`);
+                    const encodedUsername = encodeURIComponent(user.sub);
+                    const response = await axios.get(`${kBaseURL}/users/${encodedUsername}`);
                     if (!response.data) {
                         await axios.post(`${kBaseURL}/users/`, {
                             name: user.name,
@@ -60,7 +61,10 @@ const LoginButton = ({ user }) => {
     // console.log(user)
     return (
         !isAuthenticated && (
-            <button onClick={handleLogin} disabled={loading}>
+            <button
+                className={`${styles.btn} ${styles.logIn}`}
+                onClick={handleLogin}
+                disabled={loading}>
                 {loading ? "Loading..." : "Login"}
             </button>
         )

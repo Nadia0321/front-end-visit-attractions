@@ -37,7 +37,7 @@ const AddPlace = ({ onPostPlaces }) => {
                 <lable htmlFor="coverPhoto">the image:</lable>
                 <input type="file" id='coverPhoto' name='coverPhoto' onChange={handleCoverPhoto} />
             </div>
-            <div><input type="submit" value="Post"></input></div>
+            <div><input type="submit" value="Post" /></div>
             <br /><br /><br />
         </form>
 

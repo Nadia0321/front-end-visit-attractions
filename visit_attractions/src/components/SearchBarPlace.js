@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import './SearchBar.css'
-
+import styles from './SearchBar.module.css'
 
 const SearchBarPlace = ({ onHandleSubmitPlace }) => {
     const [searchPlaceState, setSearchPlaceState] = useState("")
@@ -19,8 +18,14 @@ const SearchBarPlace = ({ onHandleSubmitPlace }) => {
 
     return (
         <form className="search" onSubmit={handleSubmit}>
-            <label htmlFor="name">Search:  </label>
-            <input type='text' id='name' name='name' onChange={handleNameSearch} value={searchPlaceState} autoComplete='name'></input>
+            <input
+                className={styles.searchInput}
+                placeholder="search..."
+                type='text'
+                name='name'
+                onChange={handleNameSearch}
+                value={searchPlaceState}
+                autoComplete='name'></input>
         </form>
     )
 }

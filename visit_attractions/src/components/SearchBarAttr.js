@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import './SearchBar.css'
+import styles from './SearchBar.module.css'
 
 
 const SearchBarAttr = ({ onHandleSubmitAttr }) => {
@@ -11,17 +11,19 @@ const SearchBarAttr = ({ onHandleSubmitAttr }) => {
         setSearchAttrState(newSearch)
     }
 
-    const handleSubmit = (event) => {
 
-        event.preventDefault()
-        setSearchAttrState("")
-    }
-
-    // onSubmit={handleSubmit}
     return (
         <form className="search" >
-            <label htmlFor="name">Search:  </label>
-            <input type='text' id='name' name='name' onChange={handleNameSearch} value={searchAttrState} autoComplete='name'></input>
+
+            <input
+                className={styles.searchInput}
+                placeholder="search..."
+                type='text'
+                id='name'
+                name='name'
+                onChange={handleNameSearch}
+                value={searchAttrState}
+                autoComplete='name'></input>
         </form>
     )
 }

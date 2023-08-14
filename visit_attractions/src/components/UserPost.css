@@ -1,0 +1,14 @@
+.favorite-item {
+    position: relative;
+}
+
+/* .favorite-item svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+} */
+.delete-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

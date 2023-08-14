@@ -1,0 +1,15 @@
+.sideBar {
+    height: 100vh;
+    background-color: var(--color-thirdly);
+    color: #fff;
+    padding: 2rem;
+    position: relative;
+}
+
+.profileBtn {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    margin: .5rem 0;
+}

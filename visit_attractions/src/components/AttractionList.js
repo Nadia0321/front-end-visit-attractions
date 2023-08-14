@@ -9,24 +9,15 @@ import GoogleMaps from "./Mappp"
 import Profile from "./Authentication/Profile";
 import axios from "axios";
 import Favorite from "./Favorite";
-
-
+import styles from './AttractionList.module.css'
+import NavBar from "./NavBar";
 
 
 const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData, getAllComments, onHandleSubmitComment, fetchComments, commentData, onPostAttr, placeIdState, user, isAuthenticated, onHandleFavorite, onShowAll }) => {
 
     const params = useParams()
-    const [showAddAttrForm, setShowAddAttrForm] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [locationData, setLocationData] = useState([]);
 
-
-    const toggleAddAttrForm = () => {
-        setShowAddAttrForm(!showAddAttrForm);
-    }
-
-    const closeAddAttrForm = () => {
-        setShowAddAttrForm(!showAddAttrForm);
-    }
 
     const getAttrListJSX = (attrData) => {
         return attrData.map((attr) => {
@@ -59,17 +50,12 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
 
     }, [])
 
-
-    // =======================================================================
-    const [locationData, setLocationData] = useState([]);
-    console.log('attrData', attrData)
-    // console.log(process.env.REACT_APP_LOCATIONIQ_API_KEY)
-
     const getLanLon = async placeName => {
         const response = await axios
             .get('https://us1.locationiq.com/v1/search?key=YOUR_ACCESS_TOKEN&q=SEARCH_STRING&format=json', {
                 params: {
-                    key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
+                    // key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
+                    key: 'pk.65c62f8c63c53e4f90ebca457edbc4f7',
                     q: placeName,
                     format: 'JSON',
                 },
@@ -90,10 +76,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
 
     const lookupPlaces = async () => {
         const result = [];
-        // const defaultLocations = ['Central Park, New York City', 'Summit One Vanderbilt, New York City']
         let defaultLocations = [];
-        console.log('attrData in look up', attrData)
-        console.log('default2', defaultLocations)
         attrData.forEach((attr) => {
             defaultLocations.push(attr.name);
         });
@@ -102,67 +85,33 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
             result.push(await getLanLon(place));
             await wait(1000);
         }
-
-        console.log('lookup result', result);
         return result;
     };
 
-    useEffect(() => {
-        lookupPlaces().then(result => {
-            setLocationData(result);
-        });
-    }, [attrData]);
+    // useEffect(() => {
+    //     lookupPlaces().then(result => {
+    //         setLocationData(result);
+    //     });
+    // }, [attrData]);
 
-    // const location = [
 
-    //     { lat: 40.782579, lng: -73.965664 }, //Central Park
-    //     { lat: 40.712742, lng: -74.013382 }, // World Trade center
-    // ]
 
 
     return (
         <div>
-            <Link to={`/`}>
-                Home
-            </Link>
-            <br />
-            <Link to={`/profile`}>
-                Profile
-            </Link>
-            <Profile user={user} isAuthenticated={isAuthenticated} />
-            {isAuthenticated && (
-                <div>
-                    <Favorite attrData={attrData} user={user} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} />
-                    <button onClick={toggleAddAttrForm}> Add attraction</button>
-                    {showAddAttrForm && (
-                        <div>
-                            <p onClick={closeAddAttrForm}>X</p>
-                            <AddAttraction onPostAttr={onPostAttr} placeIdState={placeIdState} user={user} />
 
-                        </div>)}
-                </div>
-
-            )}
-            <section className='search-bar' >
-                <SearchBarAttr onHandleSubmitAttr={onHandleSubmitAttr} />
-                <Filter sortData={sortData} />
-            </section>
-
-            <section>
+            <section className={styles.attraction_container}>
                 {getAttrListJSX(attrData)}
             </section>
-            <div></div>
+
 
             {/* <GoogleMaps location={location} /> */}
             {/* {loading ? (
                 <p>Loading...</p>
             ) : ( */}
-            {locationData.length > 0 &&
+            {/* {locationData.length > 0 &&
                 <GoogleMaps location={locationData} />
-
-            }
-
-
+            } */}
         </div>
     )
 }

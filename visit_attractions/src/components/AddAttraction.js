@@ -21,7 +21,7 @@ const AddAttraction = ({ onPostAttr, placeIdState, user }) => {
         const newCoverPhoto = event.target.files[0]
         setCoverPhoto(newCoverPhoto)
     }
-    console.log(user.sub)
+    // console.log(user.sub)
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -40,7 +40,7 @@ const AddAttraction = ({ onPostAttr, placeIdState, user }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="name">State Name:</label>
+                <label htmlFor="name">Attraction Name:</label>
                 <input type="text" id='name' name='name' value={nameState} onChange={handleName} />
             </div>
             <div>

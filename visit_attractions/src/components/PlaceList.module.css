@@ -1,0 +1,11 @@
+.placeList {
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 1.3rem;
+
+}
