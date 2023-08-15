@@ -1,14 +1,11 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import styles from './Profile.module.css'
 
 const Profile = ({ user, isAuthenticated }) => {
-    // const { user, isAuthenticated } = useAuth0();
 
     return (
         isAuthenticated && (
             <article className={styles.profile}>
-                {/* <p>Profile</p> */}
                 {user?.picture && <img
                     src={user.picture}
                     alt={user?.name}

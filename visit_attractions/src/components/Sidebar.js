@@ -4,7 +4,7 @@ import styles from './Sidebar.module.css'
 import Profile from './Authentication/Profile'
 import LoginButton from './Authentication/LoginButton'
 import LogoutButton from './Authentication/LogoutButton'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import styles2 from './Authentication/Btns.module.css'
 import AddPlace from './AddPlace'
 import Favorite from './Favorite'
@@ -16,7 +16,6 @@ import SearchBarAttr from './SearchBarAttr'
 const Sidebar = ({ user, onPostPlaces, isAuthenticated, attrData, onHandleFavorite, onShowAll, onPostAttr, placeIdState, onHandleSubmitPlace, onHandleSubmitAttr }) => {
 
     const [showAddPlaceForm, setShowAddPlaceForm] = useState(false);
-    const [loading, setLoading] = useState(true);
     const [showAddAttrForm, setShowAddAttrForm] = useState(false);
     const location = useLocation();
 
@@ -43,9 +42,6 @@ const Sidebar = ({ user, onPostPlaces, isAuthenticated, attrData, onHandleFavori
 
     return (
         <aside className={styles.sideBar}>
-            <h1 className={styles.header}>
-                visit Attractions
-            </h1>
 
             {location.pathname.match(/\/attractions\/\d+/) && <SearchBarAttr onHandleSubmitAttr={onHandleSubmitAttr} />}
             {location.pathname === "/profile" && <SearchBarAttr onHandleSubmitAttr={onHandleSubmitAttr} />}

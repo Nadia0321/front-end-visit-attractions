@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import Attraction from "./Attraction";
-import SearchBarAttr from "./SearchBarAttr";
-import { Link } from 'react-router-dom';
-import Filter from "./Filter";
-import AddAttraction from "./AddAttraction";
 import GoogleMaps from "./Mappp"
-import Profile from "./Authentication/Profile";
 import axios from "axios";
-import Favorite from "./Favorite";
 import styles from './AttractionList.module.css'
-import NavBar from "./NavBar";
-
 
 const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick, onHandleSubmitAttr, fetchAttractions, sortData, getAllComments, onHandleSubmitComment, fetchComments, commentData, onPostAttr, placeIdState, user, isAuthenticated, onHandleFavorite, onShowAll }) => {
 
@@ -55,7 +47,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
             .get('https://us1.locationiq.com/v1/search?key=YOUR_ACCESS_TOKEN&q=SEARCH_STRING&format=json', {
                 params: {
                     // key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
-                    key: 'pk.65c62f8c63c53e4f90ebca457edbc4f7',
+                    key: 'pk.aef9b1636a77158b87f39ac853ea7789',
                     q: placeName,
                     format: 'JSON',
                 },
@@ -88,11 +80,11 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
         return result;
     };
 
-    // useEffect(() => {
-    //     lookupPlaces().then(result => {
-    //         setLocationData(result);
-    //     });
-    // }, [attrData]);
+    useEffect(() => {
+        lookupPlaces().then(result => {
+            setLocationData(result);
+        });
+    }, [attrData]);
 
 
 
@@ -109,9 +101,15 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
             {/* {loading ? (
                 <p>Loading...</p>
             ) : ( */}
-            {/* {locationData.length > 0 &&
+
+
+
+
+            {locationData.length > 0 &&
                 <GoogleMaps location={locationData} />
-            } */}
+            }
+
+
         </div>
     )
 }

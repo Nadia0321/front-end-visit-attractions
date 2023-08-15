@@ -9,35 +9,11 @@ import ProfilePage from './components/ProfilePage';
 import Sidebar from './components/Sidebar';
 import NavBar from './components/NavBar';
 import Filter from './components/Filter';
+import { Close, Menu } from '@mui/icons-material';
 
 
 
-const kBaseURL = "https://back-end-visit-attraction.onrender.com";
-// const kBaseURL = "http://localhost:8000";
 
-const getAllPlaces = () => {
-  return axios
-    .get(`${kBaseURL}/places`)
-    .then(response => { return response.data })
-    .catch(error => { console.log(error) })
-}
-
-const getAllAttractions = (placeID) => {
-  return axios
-    .get(`${kBaseURL}/places/${placeID}/attractions`)
-    .then((response) => {
-      return response.data.attractions.map(convertAttrFromAPI);
-    })
-    .catch((error) => console.log("Error in Fetching Attractions", error.message));
-};
-
-const convertAttrFromAPI = (apiPlaces) => {
-  const { id, name, likes, dislike, description, favorite, image, place_id } = apiPlaces;
-  const newPlaces = { id, name, likes, dislike, description, favorite, image, placeID: place_id };
-  return newPlaces
-}
-
-// ==============================================================================================
 function App() {
   const [commentData, setCommentData] = useState([])
   const [placeIdState, setPlaceIdState] = useState("")
@@ -46,6 +22,37 @@ function App() {
   const [unmodifiedAttrData, setunmodifiedAttrData] = useState([])
   const [unmodifiedPlaceData, setUnmodifiedPlaceData] = useState([])
   const { user, isAuthenticated } = useAuth0();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+
+  const kBaseURL = "https://back-end-visit-attraction.onrender.com";
+  // const kBaseURL = "http://localhost:8000";
+
+  const getAllPlaces = () => {
+    return axios
+      .get(`${kBaseURL}/places`)
+      .then(response => { return response.data })
+      .catch(error => { console.log(error) })
+  }
+
+  const getAllAttractions = (placeID) => {
+    return axios
+      .get(`${kBaseURL}/places/${placeID}/attractions`)
+      .then((response) => {
+        return response.data.attractions.map(convertAttrFromAPI);
+      })
+      .catch((error) => console.log("Error in Fetching Attractions", error.message));
+  };
+
+  const convertAttrFromAPI = (apiPlaces) => {
+    const { id, name, likes, dislike, description, favorite, image, place_id } = apiPlaces;
+    const newPlaces = { id, name, likes, dislike, description, favorite, image, placeID: place_id };
+    return newPlaces
+  }
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
 
   const fetchPlaces = () => {
     getAllPlaces()
@@ -262,11 +269,17 @@ function App() {
             <span className='heading-primary-sub'>Capturing America's Wonders</span>
             <span className='heading-primary-third'>Frame by Frame</span>
           </h1>
+
+          {/* <div className='menu-icon' onClick={toggleSidebar}>
+            {isSidebarOpen ? <Close fontSize="large" /> : <Menu fontSize="large" />}
+          </div> */}
           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgCSWniXtWJQqrfI-PLim7gOQjZbJfkB8&libraries=places"></script>
 
         </header>
         <main className='main'>
-          <Sidebar user={user} onPostPlaces={onPostPlaces} isAuthenticated={isAuthenticated} attrData={attrData} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} onPostAttr={onPostAttr} placeIdState={placeIdState} onHandleSubmitPlace={onHandleSubmitPlace} onHandleSubmitAttr={onHandleSubmitAttr} />
+
+
+          <Sidebar user={user} onPostPlaces={onPostPlaces} isAuthenticated={isAuthenticated} attrData={attrData} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} onPostAttr={onPostAttr} placeIdState={placeIdState} onHandleSubmitPlace={onHandleSubmitPlace} onHandleSubmitAttr={onHandleSubmitAttr} isOpen={isSidebarOpen} />
           <div>
             <Routes>
               <Route path='/profile' element={<ProfilePage attrData={attrData} userFavaroriteAttractions={userFavaroriteAttractions} user={user} placeIdState={placeIdState} />} />

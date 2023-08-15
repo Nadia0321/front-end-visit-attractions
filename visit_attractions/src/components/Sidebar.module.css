@@ -1,6 +1,7 @@
 .sideBar {
-    height: 100vh;
-    background-color: var(--color-thirdly);
+    height: 200vh;
+    background-color: rgba(14, 20, 26, 0.6);
+    /* var(--color-thirdly); */
     color: #fff;
     padding: 2rem;
     position: relative;

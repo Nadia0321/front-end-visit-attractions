@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Favorite = ({ attrData, user, onHandleFavorite, onShowAll }) => {
 
@@ -9,10 +9,10 @@ const Favorite = ({ attrData, user, onHandleFavorite, onShowAll }) => {
 
     const showAll = () => {
         onShowAll()
-    }
+    };
+
 
     return (
-
         <div>
             <button onClick={handleDisplayFavorite}>Favorites</button>
             <button onClick={showAll}>Show All Attractions</button>

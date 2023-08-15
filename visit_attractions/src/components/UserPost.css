@@ -2,13 +2,15 @@
     position: relative;
 }
 
-/* .favorite-item svg {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-} */
+
+.image {
+    max-width: 100%;
+
+}
+
 .delete-btn {
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
+    z-index: 1;
 }

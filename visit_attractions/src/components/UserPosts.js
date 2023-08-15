@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
-import Profile from "./Authentication/Profile";
 import axios from "axios";
-import FavoriteAttractions from "./FavoriteAttraction";
 import './UserPost.css'
-
-import { Delete } from '@mui/icons-material'
+import UserPostAttraction from "./UserPostAttraction";
 
 
 const UserPosts = ({ user, placeIdState }) => {
-    console.log(user)
-    const kBaseURL = "https://back-end-visit-attraction.onrender.com";
 
+    const kBaseURL = "https://back-end-visit-attraction.onrender.com";
     const [postAttractions, setPostAttractions] = useState([]);
+
 
     const displayPosts = () => {
         return axios
@@ -23,6 +19,7 @@ const UserPosts = ({ user, placeIdState }) => {
             })
             .catch(e => console.log(e))
     }
+
 
     useEffect(() => {
         displayPosts();
@@ -43,17 +40,16 @@ const UserPosts = ({ user, placeIdState }) => {
         return postAttractions.map((attr) => {
             return (
                 <div className='favorite-items' key={attr.id}>
-                    <FavoriteAttractions
+                    <UserPostAttraction
                         id={attr.id}
                         image={attr.image}
                         name={attr.name}
                         handleDeleteAttraction={handleDeleteAttraction}
                     />
-                    {/* <button >Delete Post</button> */}
-                    <Delete className='delete-btn' onClick={() => handleDeleteAttraction(attr.id)} fontSize="large" />
                 </div >)
         })
     }
+
 
     return (
         <div>

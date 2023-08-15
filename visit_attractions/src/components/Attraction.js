@@ -2,7 +2,6 @@ import React from "react";
 import { } from 'react-icons/fa'
 import Comment from "./Comment";
 import { useState } from "react";
-import SingleComment from "./singleComment";
 import './Attraction.css'
 import { ThumbUp, ThumbDown, Comment as CommentIcon, BookmarksRounded, BookmarkBorder } from "@mui/icons-material"
 
@@ -18,27 +17,6 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
         fetchComments(id)
     }
 
-
-
-
-
-
-    // const getComentJSX = () => {
-    //     console.log("in Attraction", commentData)
-    //     return commentData.map((cmt) => {
-    //         return (
-    //             <SingleComment
-    //                 name={cmt.name}
-    //                 comment={cmt.comment}
-    //             />
-    //         )
-    //     })
-    // }
-
-
-    // const closeModal = () => {
-    //     setShowModal(false);
-    // };
 
     return (
         <div class="attraction-list">
@@ -74,10 +52,7 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
 
             {showModal && (
                 <div>
-                    {/* <div onClick={closeModal}>✖</div> */}
                     <Comment onHandleSubmitComment={onHandleSubmitComment} id={id} commentData={commentData} fetchComments={fetchComments} onClose={() => setShowModal(false)} />
-                    {/* <div>{getComentJSX()}</div> */}
-                    {/* getComentJSX={getComentJSX} */}
                 </div>
             )}
         </div>
