@@ -19,10 +19,6 @@ const Sidebar = ({ user, onPostPlaces, isAuthenticated, attrData, onHandleFavori
     const [showAddAttrForm, setShowAddAttrForm] = useState(false);
     const location = useLocation();
 
-
-
-
-
     const toggleAddAttrForm = () => {
         setShowAddAttrForm(!showAddAttrForm);
     }

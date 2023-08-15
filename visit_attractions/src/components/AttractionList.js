@@ -46,8 +46,8 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
         const response = await axios
             .get('https://us1.locationiq.com/v1/search?key=YOUR_ACCESS_TOKEN&q=SEARCH_STRING&format=json', {
                 params: {
-                    // key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
-                    key: 'pk.aef9b1636a77158b87f39ac853ea7789',
+                    key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
+
                     q: placeName,
                     format: 'JSON',
                 },
