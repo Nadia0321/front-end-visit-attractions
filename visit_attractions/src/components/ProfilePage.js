@@ -37,12 +37,6 @@ const ProfilePage = ({ user, placeIdState }) => {
 
     return (
         <div className="profile">
-            {/* <Link to={`/`}>
-                Home
-            </Link> */}
-            {/* <section>
-                <Profile user={user} />
-            </section> */}
             <h2>Favorite Attractions</h2>
             <section className="parent-favorite">{getfavoriteAttractions()}</section>
             <h2>User Posts</h2>

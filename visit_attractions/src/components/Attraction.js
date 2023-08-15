@@ -19,22 +19,26 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
     }
 
 
-    const getComentJSX = () => {
-        console.log("in Attraction", commentData)
-        return commentData.map((cmt) => {
-            return (
-                <SingleComment
-                    name={cmt.name}
-                    comment={cmt.comment}
-                />
-            )
-        })
-    }
 
 
-    const closeModal = () => {
-        setShowModal(false);
-    };
+
+
+    // const getComentJSX = () => {
+    //     console.log("in Attraction", commentData)
+    //     return commentData.map((cmt) => {
+    //         return (
+    //             <SingleComment
+    //                 name={cmt.name}
+    //                 comment={cmt.comment}
+    //             />
+    //         )
+    //     })
+    // }
+
+
+    // const closeModal = () => {
+    //     setShowModal(false);
+    // };
 
     return (
         <div class="attraction-list">
@@ -62,21 +66,19 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
                 </div>
                 <div className="attraction-images">
                     <img class="img img1" src={image} alt="" />
-                    <img class="img img2" src={image} alt="" />
-                    <img class="img img3" src={image} alt="" />
+                    {/* <img class="img img2" src={image} alt="" />
+                    <img class="img img3" src={image} alt="" /> */}
                 </div>
 
             </div >
 
-            {showModal ? (
+            {showModal && (
                 <div>
-                    <div onClick={closeModal}>✖</div>
-                    <Comment onHandleSubmitComment={onHandleSubmitComment} id={id} commentData={commentData} getComentJSX={getComentJSX} />
+                    {/* <div onClick={closeModal}>✖</div> */}
+                    <Comment onHandleSubmitComment={onHandleSubmitComment} id={id} commentData={commentData} fetchComments={fetchComments} onClose={() => setShowModal(false)} />
                     {/* <div>{getComentJSX()}</div> */}
-
+                    {/* getComentJSX={getComentJSX} */}
                 </div>
-            ) : (
-                <></>
             )}
         </div>
     )

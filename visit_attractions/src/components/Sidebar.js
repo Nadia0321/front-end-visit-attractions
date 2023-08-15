@@ -6,7 +6,7 @@ import LoginButton from './Authentication/LoginButton'
 import LogoutButton from './Authentication/LogoutButton'
 import { Link, useLocation } from 'react-router-dom'
 import styles2 from './Authentication/Btns.module.css'
-import AddPlace from './AddAttraction'
+import AddPlace from './AddPlace'
 import Favorite from './Favorite'
 import AddAttraction from './AddAttraction'
 import SearchBarAttr from './SearchBarAttr'
@@ -32,7 +32,9 @@ const Sidebar = ({ user, onPostPlaces, isAuthenticated, attrData, onHandleFavori
         setShowAddAttrForm(!showAddAttrForm);
     }
     const toggleAddPlaceForm = () => {
+        console.log("showAddPlaceForm", !showAddPlaceForm)
         setShowAddPlaceForm(!showAddPlaceForm);
+        console.log("I am in toggle add place form")
     }
 
     const closeAddPlaceForm = () => {
@@ -60,13 +62,14 @@ const Sidebar = ({ user, onPostPlaces, isAuthenticated, attrData, onHandleFavori
                             onClick={toggleAddPlaceForm}>Add Place</button>
                         {showAddPlaceForm && (
                             <div>
-                                <p onClick={closeAddPlaceForm}>X</p>
                                 <AddPlace onPostPlaces={onPostPlaces} />
+                                <p onClick={closeAddPlaceForm}>X</p>
                             </div>)}
                     </div>
 
                 )}
             </div>
+
 
             <div>
                 {isAuthenticated && location.pathname.match(/\/attractions\/\d+/) && (

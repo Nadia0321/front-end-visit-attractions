@@ -13,6 +13,7 @@ import Filter from './components/Filter';
 
 
 const kBaseURL = "https://back-end-visit-attraction.onrender.com";
+// const kBaseURL = "http://localhost:8000";
 
 const getAllPlaces = () => {
   return axios
@@ -172,7 +173,6 @@ function App() {
   }
 
 
-
   const onHandleSubmitComment = (id, data) => {
     console.log(placeIdState, id)
     axios
@@ -186,7 +186,7 @@ function App() {
   }
 
   const onPostPlaces = (uploadData) => {
-
+    console.log("i am in onPostPlace")
     axios.post(`${kBaseURL}/place/`, uploadData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -203,7 +203,7 @@ function App() {
   }
 
   const onPostAttr = (uploadData) => {
-
+    console.log("I am in onPostattractions")
     axios.post(`${kBaseURL}/place/${placeIdState}/attractions/`, uploadData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -229,7 +229,6 @@ function App() {
         setAttrData(attractions)
       })
   }
-
 
 
   const userFavaroriteAttractions = () => {

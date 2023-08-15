@@ -21,11 +21,13 @@ const AddAttraction = ({ onPostAttr, placeIdState, user }) => {
         const newCoverPhoto = event.target.files[0]
         setCoverPhoto(newCoverPhoto)
     }
-    // console.log(user.sub)
+    // console.log(cover)
     const handleSubmit = (event) => {
+        console.log(coverPhoto)
         event.preventDefault();
 
         const uploadData = new FormData();
+        // const encodedUsername = encodeURIComponent(user.sub);
         uploadData.append("name", nameState);
         uploadData.append("description", description);
         uploadData.append("place_id", placeIdState);
@@ -36,6 +38,7 @@ const AddAttraction = ({ onPostAttr, placeIdState, user }) => {
         setDescription("")
 
     }
+
 
     return (
         <form onSubmit={handleSubmit}>
