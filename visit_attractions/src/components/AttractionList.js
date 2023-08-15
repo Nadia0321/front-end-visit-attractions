@@ -62,16 +62,16 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
     }
 
 
-
+    const result = [];
+    let defaultLocations = [];
+    attrData.forEach((attr) => {
+        defaultLocations.push(attr.name);
+    });
 
     const wait = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds));
 
     const lookupPlaces = async () => {
-        const result = [];
-        let defaultLocations = [];
-        attrData.forEach((attr) => {
-            defaultLocations.push(attr.name);
-        });
+
 
         for (const place of defaultLocations) {
             result.push(await getLanLon(place));
@@ -106,7 +106,7 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
 
 
             {locationData.length > 0 &&
-                <GoogleMaps location={locationData} />
+                <GoogleMaps location={locationData} defaultLocations={defaultLocations} />
             }
 
 
