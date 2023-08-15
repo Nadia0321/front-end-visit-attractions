@@ -1,11 +1,11 @@
-// import './SingleComment.css'
+import './SingleComment.css'
 
 
 const SingleComment = ({ name, comment }) => {
 
     return (
-        <div className='comment-section'>
-            <h6 >{name}</h6>
+        <div className='single-comment'>
+            <h6 className='user-comment-name'>{name}</h6>
             <section>
                 {comment}
             </section>

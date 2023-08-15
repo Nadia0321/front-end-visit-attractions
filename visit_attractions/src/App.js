@@ -10,7 +10,7 @@ import Sidebar from './components/Sidebar';
 import NavBar from './components/NavBar';
 import Filter from './components/Filter';
 import { Close, Menu } from '@mui/icons-material';
-
+import logo from './images/logo.jpg'
 
 
 
@@ -262,7 +262,7 @@ function App() {
             <Link to={`/profile`} className='NavLink'>
               Profile
             </Link>
-            <Filter sortData={sortData} />
+
           </NavBar>
           <h1 className='heading-primary'>
             <span className='heading-primary-main'>Visit Attractions</span>
@@ -279,7 +279,7 @@ function App() {
         <main className='main'>
 
 
-          <Sidebar user={user} onPostPlaces={onPostPlaces} isAuthenticated={isAuthenticated} attrData={attrData} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} onPostAttr={onPostAttr} placeIdState={placeIdState} onHandleSubmitPlace={onHandleSubmitPlace} onHandleSubmitAttr={onHandleSubmitAttr} isOpen={isSidebarOpen} />
+          <Sidebar user={user} onPostPlaces={onPostPlaces} isAuthenticated={isAuthenticated} attrData={attrData} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} onPostAttr={onPostAttr} placeIdState={placeIdState} onHandleSubmitPlace={onHandleSubmitPlace} onHandleSubmitAttr={onHandleSubmitAttr} isOpen={isSidebarOpen} sortData={sortData} />
           <div>
             <Routes>
               <Route path='/profile' element={<ProfilePage attrData={attrData} userFavaroriteAttractions={userFavaroriteAttractions} user={user} placeIdState={placeIdState} />} />
@@ -294,7 +294,7 @@ function App() {
           <footer class="footer">
             <div className='footer-wrapper'>
               <div class="logo">
-                <img src="" alt="Logo" />
+                <img src={logo} alt="Logo" className='logo-image' />
               </div>
               <ul class="list">
                 <li class="list-item">[Privacy Policy] | [Terms of Use] | [Site Map]

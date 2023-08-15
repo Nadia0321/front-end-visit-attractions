@@ -39,7 +39,7 @@ const UserPosts = ({ user, placeIdState }) => {
     const getPostAttractions = () => {
         return postAttractions.map((attr) => {
             return (
-                <div className='favorite-items' key={attr.id}>
+                <div className='one-user-post' key={attr.id}>
                     <UserPostAttraction
                         id={attr.id}
                         image={attr.image}
@@ -54,7 +54,7 @@ const UserPosts = ({ user, placeIdState }) => {
     return (
         <div>
             <section>
-                <div>{getPostAttractions()}</div>
+                <div className='favorite-items'>{getPostAttractions()}</div>
             </section>
         </div>
     )

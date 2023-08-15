@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import './AddAttraction.css'
 
 const AddAttraction = ({ onPostAttr, placeIdState, user }) => {
     const [nameState, setNameState] = useState("")
@@ -35,25 +35,24 @@ const AddAttraction = ({ onPostAttr, placeIdState, user }) => {
         onPostAttr(uploadData)
         setNameState("")
         setDescription("")
-
     }
 
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="name">Attraction Name:</label>
-                <input type="text" id='name' name='name' value={nameState} onChange={handleName} />
+                <label htmlFor="name" className="lable" >Attraction Name:</label>
+                <input type="text" id='name' name='name' value={nameState} onChange={handleName} className="input" />
             </div>
             <div>
-                <label htmlFor="description">Description:</label>
-                <textarea type="text" id='description' name='description' value={description} onChange={handleDescription} />
+                <label htmlFor="description" className="lable" >Description:</label>
+                <textarea type="text" id='description' name='description' value={description} onChange={handleDescription} className="input" />
             </div>
             <div>
-                <label htmlFor="coverPhoto">the image:</label>
+                <label htmlFor="coverPhoto" lassName="lable">the image:</label>
                 <input type="file" id='coverPhoto' name='coverPhoto' onChange={handleCoverPhoto} />
             </div>
-            <div><input type="submit" value="Post"></input></div>
+            <div><input type="submit" value="Post" className="submit-btn"></input></div>
             <br /><br /><br />
         </form>
     )

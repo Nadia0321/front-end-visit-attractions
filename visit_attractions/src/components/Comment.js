@@ -1,5 +1,5 @@
 
-// import './Comment.css'
+import './Comment.css'
 import { useState } from 'react'
 import { Close } from '@mui/icons-material'
 import SingleComment from './singleComment'

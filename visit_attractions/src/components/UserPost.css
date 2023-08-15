@@ -1,11 +1,17 @@
-.favorite-item {
-    position: relative;
+.favorite-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
 }
 
 
 .image {
     max-width: 100%;
 
+}
+
+.one-user-post {
+    position: relative;
 }
 
 .delete-btn {

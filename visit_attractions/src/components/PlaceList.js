@@ -1,10 +1,10 @@
 import React from "react";
 import Place from "./Place";
 import styles from './PlaceList.module.css'
+import Filter from "./Filter";
 
 
-
-const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces, user, isAuthenticated }) => {
+const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces, user, isAuthenticated, sortData }) => {
 
     const getPlaceListJSX = () => {
         return placeData.map((place) => {
@@ -27,6 +27,7 @@ const PlaceList = ({ placeData, onHandleSubmitPlace, onPostPlaces, user, isAuthe
 
     return (
         <div className="body">
+
             <div className={styles.placeList}>
                 {getPlaceListJSX()}
             </div>

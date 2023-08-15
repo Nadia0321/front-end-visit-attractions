@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import './AddPlace.css'
 
 const AddPlace = ({ onPostPlaces }) => {
     const [nameState, setNameState] = useState("")
@@ -28,20 +28,18 @@ const AddPlace = ({ onPostPlaces }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form">
             <div>
-                <lable htmlFor="name">State Name:</lable>
-                <input type="text" id='name' name='name' value={nameState} onChange={handleName} />
+                <label htmlFor="name" className="lable" >State Name:</label>
+                <input type="text" id='name' name='name' value={nameState} onChange={handleName} className="input" />
             </div>
             <div>
-                <lable htmlFor="coverPhoto">the image:</lable>
-                <input type="file" id='coverPhoto' name='coverPhoto' onChange={handleCoverPhoto} />
+                <label htmlFor="coverPhoto" className="lable" >the image:</label>
+                <input type="file" id='coverPhoto' name='coverPhoto' onChange={handleCoverPhoto} className="input" />
             </div>
-            <div><input type="submit" value="Post" /></div>
-            <br /><br /><br />
+            <div><input type="submit" value="Post" className="submit-btn" /></div>
         </form>
 
-        // <br/>
     )
 }
 

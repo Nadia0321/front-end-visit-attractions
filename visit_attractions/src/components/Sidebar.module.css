@@ -14,3 +14,20 @@
     text-align: center;
     margin: .5rem 0;
 }
+
+.icon_wrapper {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 5rem;
+}
+
+/* .close-btn {
+    position: absolute;
+    margin-right: 0;
+}
+
+.whole-form {
+    box-shadow: #fff;
+    position: relative;
+} */
