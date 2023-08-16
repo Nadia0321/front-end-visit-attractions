@@ -80,11 +80,11 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
         return result;
     };
 
-    // useEffect(() => {
-    //     lookupPlaces().then(result => {
-    //         setLocationData(result);
-    //     });
-    // }, [attrData]);
+    useEffect(() => {
+        lookupPlaces().then(result => {
+            setLocationData(result);
+        });
+    }, [attrData]);
 
 
 
@@ -105,9 +105,9 @@ const AttractionList = ({ attrData, onLikeClick, onDislikeClick, onFavoriteClick
 
 
 
-            {/* {locationData.length > 0 &&
+            {locationData.length > 0 &&
                 <GoogleMaps location={locationData} defaultLocations={defaultLocations} />
-            } */}
+            }
 
 
         </div>

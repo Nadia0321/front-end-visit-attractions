@@ -19,13 +19,14 @@
     width: fit-content;
     border-radius: 10px;
     position: relative;
-    transform: translateX(-20%);
+    transform: translateX(-10%);
 
 }
 
 .attraction-text {
     width: 22.5rem;
     color: #fff;
+    text-align: justify;
 }
 
 .attraction-images {
@@ -44,11 +45,11 @@
 }
 
 .img1 {
-    width: 20rem;
-    height: 15rem;
+    width: 25rem;
+    height: 17rem;
     z-index: 2;
-    top: -30%;
-    left: -20%;
+    top: -6%;
+    left: 0%;
 }
 
 .img2 {

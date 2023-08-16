@@ -10,7 +10,7 @@ import Sidebar from './components/Sidebar';
 import NavBar from './components/NavBar';
 import Filter from './components/Filter';
 import { Close, Menu } from '@mui/icons-material';
-import logo from './images/logo.jpg'
+import image from './images/image.png'
 
 
 
@@ -49,9 +49,6 @@ function App() {
     const newPlaces = { id, name, likes, dislike, description, favorite, image, placeID: place_id };
     return newPlaces
   }
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
 
 
   const fetchPlaces = () => {
@@ -245,14 +242,12 @@ function App() {
   }
 
 
-
-
   return (
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
           <div className='logo-box'>
-            <img src="/Users/nadia/developer/projects/Visit_attr_project/project_files/Pictures_Capstone/logo.jpg" alt="logo" className='logo' />
+            <img src={image} alt="logo" className='header-logo' />
           </div>
           <NavBar>
             <Link to={`/`} className='NavLink'>
@@ -270,9 +265,6 @@ function App() {
             <span className='heading-primary-third'>Frame by Frame</span>
           </h1>
 
-          {/* <div className='menu-icon' onClick={toggleSidebar}>
-            {isSidebarOpen ? <Close fontSize="large" /> : <Menu fontSize="large" />}
-          </div> */}
           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgCSWniXtWJQqrfI-PLim7gOQjZbJfkB8&libraries=places"></script>
 
         </header>
@@ -294,7 +286,7 @@ function App() {
           <footer className="footer">
             <div className='footer-wrapper'>
               <div className="logo">
-                <img src={logo} alt="Logo" className='logo-image' />
+                <img src={image} alt="Logo" className='logo-image' width={'15rem'} />
               </div>
               <ul className="list">
                 <li className="list-item">[Privacy Policy] | [Terms of Use] | [Site Map]

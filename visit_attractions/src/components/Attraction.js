@@ -44,8 +44,6 @@ const Attraction = ({ id, image, name, likes, dislike, onLikeClick, onDislikeCli
                 </div>
                 <div className="attraction-images">
                     <img class="img img1" src={image} alt="" />
-                    {/* <img class="img img2" src={image} alt="" />
-                    <img class="img img3" src={image} alt="" /> */}
                 </div>
 
             </div >
