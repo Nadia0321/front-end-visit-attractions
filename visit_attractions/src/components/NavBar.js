@@ -1,5 +1,5 @@
 import './NavBar.css'
-
+import './Place.module.css'
 
 
 

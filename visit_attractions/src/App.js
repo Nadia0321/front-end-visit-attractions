@@ -291,19 +291,19 @@ function App() {
                   onHandleSubmitAttr={onHandleSubmitAttr} fetchAttractions={fetchAttractions} sortData={sortData} getAllComments={getAllComments} onHandleSubmitComment={onHandleSubmitComment} fetchComments={fetchComments} commentData={commentData} onPostAttr={onPostAttr} placeIdState={placeIdState} user={user} isAuthenticated={isAuthenticated} onHandleFavorite={onHandleFavorite} onShowAll={onShowAll} />} />
             </Routes>
           </div>
-          <footer class="footer">
+          <footer className="footer">
             <div className='footer-wrapper'>
-              <div class="logo">
+              <div className="logo">
                 <img src={logo} alt="Logo" className='logo-image' />
               </div>
-              <ul class="list">
-                <li class="list-item">[Privacy Policy] | [Terms of Use] | [Site Map]
+              <ul className="list">
+                <li className="list-item">[Privacy Policy] | [Terms of Use] | [Site Map]
                 </li>
-                <li class="list-item">© 2023 USA Attractions Explorer. All rights reserved.
+                <li className="list-item">© 2023 USA Attractions Explorer. All rights reserved.
                 </li>
-                <li class="list-item">sa[Contact Information]</li>
-                <li class="list-item">Email: info@usavisitattractions.com</li>
-                <li class="list-item">Follow us:</li>
+                <li className="list-item">sa[Contact Information]</li>
+                <li className="list-item">Email: info@usavisitattractions.com</li>
+                <li className="list-item">Follow us:</li>
               </ul>
             </div>
 
