@@ -295,7 +295,7 @@ function App() {
                 </li>
                 <li className="list-item">sa[Contact Information]</li>
                 <li className="list-item">Email: info@usavisitattractions.com</li>
-                <li className="list-item">Follow us:</li>
+                {/* <li className="list-item">Follow us:</li> */}
               </ul>
             </div>
 
