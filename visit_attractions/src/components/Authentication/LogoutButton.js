@@ -8,7 +8,10 @@ const LogoutButton = () => {
         isAuthenticated && (
             <button
                 className={`${styles.btn} ${styles.logOut}`}
-                onClick={() => logout()}>
+                onClick={() => logout({
+                    returnTo: window.location.origin
+                    // clientID:
+                })}>
                 Logout
             </button>
 
@@ -18,3 +21,7 @@ const LogoutButton = () => {
 }
 
 export default LogoutButton
+// webAuth.logout({
+//   returnTo: 'some url here',
+//   clientID: 'some client ID here'
+// });
